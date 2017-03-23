@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Home extends WeSing_Controller {
 
 	/**
 	 * Index Page for this controller.
