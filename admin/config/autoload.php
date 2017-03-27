@@ -103,7 +103,7 @@ $autoload['helper'] = array('url','html','tpl');
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload['config'] = array('dbmap');
+$autoload['config'] = array('dbmap','sysmenu');
 
 /*
 | -------------------------------------------------------------------

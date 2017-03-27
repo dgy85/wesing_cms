@@ -32,6 +32,40 @@ if (!function_exists('tpl')) {
     }
 }
 
+/**
+ * 控制台页面左侧导航栏生成
+ */
+if(!function_exists('menuShow')){
+    function menuShow($menu,$selectedItem='',$sub=false) {
+        if(!is_array($menu)) return;
+        if($sub){
+            printf('<ul class="submenu">');
+        }
+        foreach($menu as $_menuItem){
+            if(!$_menuItem['show']) continue;
+            $hasChild = is_array($_menuItem['children'])&&$_menuItem['children'];
+            $linktar = $_menuItem['target'] ? $_menuItem['target'] : 'home/error';
+            printf('<li class="%s">',$selectedItem ==$_menuItem['text'] ? 'active' : '');
+//            printf('<a href="%s" class="%s">',site_url($linktar),$hasChild?'dropdown-toggle':'');
+            printf('<a _href="%s" class="%s" style="cursor: pointer">',$linktar,$hasChild?'dropdown-toggle':'ace_tabs');
+            printf('<i class="%s"></i>',$_menuItem['icon']);
+            printf('<span class="menu-text"> %s </span>',$_menuItem['text']);
+            if($hasChild){
+                printf('<b class="arrow icon-angle-down"></b>');
+            }
+            printf('</a>');
+            if($hasChild){
+                menuShow($_menuItem['children'],'',true);
+            }
+            printf('</li>');
+        }
+        if($sub){
+            printf('</ul>');
+        }
+    };
+}
+
+
 if(!function_exists('tableHeadRender')){
     function tableHeadRender(array $headers,$trAttrs='',$tdAttrs=''){
         printf('<thead><tr %s>'.PHP_EOL,strip_tags($trAttrs));
