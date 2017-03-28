@@ -112,7 +112,7 @@ define(function(require){
                 <i class="icon-remove grey" data-for="'+domId+'"></i>\
             </li>')
         var $ContentItem =$('<div id="'+domId+'" class="tab-pane in active">\
-                <iframe src="/'+target+'" id="pageContainer_'+domId+'" frameborder="0" scrolling="auto" style="width: 100%;display: none" onload="$(this).fadeIn()"></iframe>\
+                <iframe src="'+(PAGE_VAR.SITE_URL+target)+'" id="pageContainer_'+domId+'" frameborder="0" scrolling="auto" style="width: 100%;display: none" onload="$(this).fadeIn()"></iframe>\
             </div>');
 
         $('#navTabs').children().removeClass('active').end().append($liItem);

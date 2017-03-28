@@ -16,4 +16,7 @@
     <!--    <link rel="stylesheet" href="/assets/css/paystyle.css" />-->
     <script src="/assets/seajs.js"></script>
     <script src="/assets/seajsConfig.js"></script>
+    <script>
+        var PAGE_VAR = {SITE_URL:'<?php echo site_url('/')?>'}
+    </script>
 </head>

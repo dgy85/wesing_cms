@@ -2,13 +2,9 @@
 
 $config['menu'] =  array(
     'Home'=>array('show'=>true,'text'=>'控制台','icon'=>'icon-dashboard','target'=>'sys-dashboard','children'=>array()),
-    'Type'=>array('show'=>true,'text'=>'系统','icon'=>'icon-cogs','target'=>'sys-typeIndex','children'=>array(
-        'Merchant'=>array('show'=>true,'text'=>'商户管理','icon'=>'icon-briefcase','target'=>'merchant','children'=>array()),
-        'Auth'=>array('show'=>true,'text'=>'权限管理','icon'=>'icon-lock','target'=>'auth','children'=>array()),
-        'Pays'=>array('show'=>true,'text'=>'支付方式','icon'=>'icon-building','target'=>'sys-typeIndex','children'=>array())
-    )),
-    'Search'=>array('show'=>true,'text'=>'订单','icon'=>'icon-search','target'=>'orders','children'=>array(
-        'Orders'=>array('show'=>true,'text'=>'订单查询','icon'=>'icon-credit-card','target'=>'orders','children'=>array()),
-        'Refund'=>array('show'=>true,'text'=>'退款管理','icon'=>'icon-money','target'=>'orders-refund','children'=>array()),
-    )),
+    'Administrator'=>array('show'=>true,'text'=>'系统管理员','icon'=>'icon-user','target'=>'Administrator','children'=>array()),
+    'Usr'=>array('show'=>true,'text'=>'用户管理','icon'=>'icon-group','target'=>'Usr','children'=>array()),
+    'Category'=>array('show'=>true,'text'=>'分类管理','icon'=>'icon-list','target'=>'Category','children'=>array()),
+    'Articles'=>array('show'=>true,'text'=>'文章管理','icon'=>'icon-tag','target'=>'Articles','children'=>array()),
+    'Signinfo'=>array('show'=>true,'text'=>'报名信息','icon'=>'icon-book','target'=>'Signinfo','children'=>array())
 );
