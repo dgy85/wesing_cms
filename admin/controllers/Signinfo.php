@@ -6,4 +6,9 @@ class Signinfo extends Admin_Controller
     {
         $this->showpage('admin/signinfo_list');
     }
+
+    public function add()
+    {
+
+    }
 }

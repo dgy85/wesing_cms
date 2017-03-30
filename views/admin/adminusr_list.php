@@ -3,7 +3,7 @@
 <div class="page-content">
     <div class="page-header">
         <span class="bigger-150">
-            管理员列表 <input type="button" class="btn btn-xs btn-primary" value="新增">
+            管理员列表 <?php echo anchor('administrator/add','新增','class="btn btn-xs btn-primary"')?>
         </span>
     </div><!-- /.page-header -->
 
@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-hover">
+                        <table class="table table-striped table-bordered table-hover newRec">
                             <thead>
                             <tr>
                                 <th class="center">

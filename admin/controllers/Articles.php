@@ -7,4 +7,8 @@ class Articles extends Admin_Controller
         $this->showpage('admin/art_list');
     }
 
+    public function add()
+    {
+
+    }
 }

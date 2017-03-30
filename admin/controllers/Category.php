@@ -5,4 +5,9 @@ class Category extends Admin_Controller
     {
         $this->showpage('admin/category_list');
     }
+
+    public function add()
+    {
+
+    }
 }

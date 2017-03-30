@@ -5,4 +5,9 @@ class Administrator extends Admin_Controller
     {
         $this->showpage('admin/adminusr_list');
     }
+
+    public function add()
+    {
+
+    }
 }
