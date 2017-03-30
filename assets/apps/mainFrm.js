@@ -51,8 +51,7 @@ define(function(require){
                 height: $options.height || 300,
                 animate:!ele
             });
-        } catch (e) {
-        }
+        } catch (e) {}
     }
     //弹出模态框
     var modalbox = {

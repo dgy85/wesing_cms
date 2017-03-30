@@ -4,6 +4,6 @@ class Signinfo extends Admin_Controller
 {
     public function index()
     {
-        echo __CLASS__;
+        $this->showpage('admin/signinfo_list');
     }
 }

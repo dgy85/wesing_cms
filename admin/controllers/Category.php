@@ -3,6 +3,6 @@ class Category extends Admin_Controller
 {
     public function index()
     {
-        echo __CLASS__;
+        $this->showpage('admin/category_list');
     }
 }

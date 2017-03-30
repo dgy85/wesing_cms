@@ -4,7 +4,7 @@ class Articles extends Admin_Controller
 {
     public function index()
     {
-        echo __CLASS__;
+        $this->showpage('admin/art_list');
     }
 
 }

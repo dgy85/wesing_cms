@@ -95,9 +95,21 @@ if(!function_exists('tableBodyRender')){
     }
 }
 
-function actLink($recid)
+function actLink($recid,array $btns=array(),array $extInfo=array())
 {
-    return sprintf('<a class="editItem" _id="%s">编辑</a><span class="seprate">|</span><a class="deleteitem" _id="%s">删除</a>',$recid,$recid);
+    $dinfo = json_encode($extInfo);
+    return <<<EOD
+    <div class="btn-group" data-info='$dinfo'>
+        <button class="btn btn-xs btn-info" _tagId="$recid">
+            <i class="icon-edit bigger-120"></i>
+        </button>
+
+        <button class="btn btn-xs btn-danger" _tagId="$recid">
+            <i class="icon-trash bigger-120"></i>
+        </button>
+    </div>
+EOD;
+;
 }
 
 function trimTitle($title)
