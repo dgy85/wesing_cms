@@ -15,5 +15,8 @@
     <script src="/assets/seajsConfig.js"></script>
     <script>
         var PAGE_VAR = {SITE_URL:'<?php echo site_url('/')?>'}
+        String.prototype.trimSpace = function(){
+            return this.replace(/\s/g,'');
+        };
     </script>
 </head>

@@ -19,4 +19,13 @@ class Admin_Controller extends CI_Controller
         $args['menu'] = $this->config->item('menu');
         return $this->load->view($pagefile,$args,$returnString);
     }
+
+    protected function _response($msg,$code)
+    {
+        echo json_encode(array(
+            'responseCode'=>$code,
+            'responseMsg'=>$msg
+        ));
+        exit;
+    }
 }

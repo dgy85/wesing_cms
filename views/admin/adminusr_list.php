@@ -3,7 +3,7 @@
 <div class="page-content">
     <div class="page-header">
         <span class="bigger-150">
-            管理员列表 <?php echo anchor('administrator/add','新增','class="btn btn-xs btn-primary"')?>
+            管理员列表 / <?php echo anchor('administrator/add','新增')?>
         </span>
     </div><!-- /.page-header -->
 
@@ -22,72 +22,41 @@
                                         <span class="lbl"></span>
                                     </label>
                                 </th>
-                                <th>Domain</th>
-                                <th>Price</th>
-                                <th class="hidden-480">Clicks</th>
-
-                                <th>
-                                    <i class="icon-time bigger-110 hidden-480"></i>
-                                    Update
-                                </th>
-                                <th class="hidden-480">Status</th>
-
+                                <th>用户名</th>
+                                <th>创建时间</th>
+                                <th>上次登录时间</th>
+                                <th>上次登录地址</th>
                                 <th></th>
                             </tr>
                             </thead>
 
                             <tbody>
-                            <tr>
-                                <td class="center">
-                                    <label>
-                                        <input type="checkbox" class="ace"/>
-                                        <span class="lbl"></span>
-                                    </label>
-                                </td>
-                                <td>
-                                    <a href="#">ace.com</a>
-                                </td>
-                                <td>$45</td>
-                                <td class="hidden-480">3,330</td>
-                                <td>Feb 12</td>
-                                <td class="hidden-480">
-                                    <span class="label label-sm label-warning">Expiring</span>
-                                </td>
-                                <td>
-                                    <?php echo actLink(45,array('test'=>'link','tar'=>'base'))?>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="center">
-                                    <label>
-                                        <input type="checkbox" class="ace"/>
-                                        <span class="lbl"></span>
-                                    </label>
-                                </td>
-
-                                <td>
-                                    <a href="#">base.com</a>
-                                </td>
-                                <td>$35</td>
-                                <td class="hidden-480">2,595</td>
-                                <td>Feb 18</td>
-
-                                <td class="hidden-480">
-                                    <span class="label label-sm label-success">Registered</span>
-                                </td>
-
-                                <td>
-                                    <?php echo actLink(33)?>
-                                </td>
-                            </tr>
+                                <?php if(is_array($list)) foreach ($list as $_usr):?>
+                                    <tr>
+                                        <td class="center">
+                                            <label>
+                                                <input type="checkbox" class="ace" _itemId="<?php echo $_usr['id']?>"/>
+                                                <span class="lbl"></span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <a href="#"><?php echo $_usr['uname']?></a>
+                                        </td>
+                                        <td><?php echo $_usr['ctime']?></td>
+                                        <td><?php echo $_usr['lastlogin']?></td>
+                                        <td><?php echo long2ip($_usr['lastloginip'])?></td>
+                                        <td>
+                                            <?php echo actLink(45,array('test'=>'link','tar'=>'base'))?>
+                                        </td>
+                                    </tr>
+                                <?php endforeach;?>
                             </tbody>
                         </table>
                         <table class="table table-striped table-bordered table-hover">
                             <thead>
                             <tr>
                                 <th class="left" style="font-weight: normal;border-bottom: none">
-                                    条数记录
+                                    <?php printf("&nbsp;&nbsp;共%d条记录&nbsp;&nbsp;当前第%d~%d条&nbsp;&nbsp;%d/%d",$total,$start,$end,$page,$totalpage)?>
                                 </th>
                             </tr>
                             </thead>

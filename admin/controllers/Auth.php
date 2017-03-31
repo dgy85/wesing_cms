@@ -15,7 +15,20 @@ class Auth extends CI_Controller
             $this->_response(array('responseCode'=>403,'responseMsg'=>'账号或者密码不能为空'),403);
         }
 
-        $this->session->set_userdata(array('usrKey'=>1));
+        $this->load->model('administrator_model','am');
+        $adminInfo = $this->am->getByField('uname',$uname);
+        if(!$adminInfo)
+            $this->_response(array('responseCode'=>401,'responseMsg'=>'账号或者密码错误'),403);
+
+        $adminPass = $adminInfo['upass'];
+        $salt = $adminInfo['salt'];
+        if(md5($uname.$upass.$salt)!=$adminPass)
+            $this->_response(array('responseCode'=>402,'responseMsg'=>'账号或者密码错误'),403);
+
+        unset($adminInfo['salt']);
+        unset($adminInfo['upass']);
+        $this->db->query(sprintf("update wesing_admin set lastlogin=now(),lastloginip=%d where id=%d",ip2long($this->input->ip_address()),$adminInfo['id']));
+        $this->session->set_userdata($adminInfo);
         $this->_response(array('responseCode'=>200,'responseMsg'=>'用户登录成功'),200);
     }
 

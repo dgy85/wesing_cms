@@ -3,7 +3,7 @@
 class Admin_Model extends CI_Model
 {
     protected static $dbCache = array();
-    private $tableName;
+    protected $tableName;
     public function __construct()
     {
         parent::__construct();
@@ -13,6 +13,11 @@ class Admin_Model extends CI_Model
         if( $this->tableName && !isset(self::$dbCache[$this->tableName])){
             $this->_init($this->tableName,self::$dbCache);
         }
+    }
+
+    protected function _getEntity()
+    {
+        return self::$dbCache[$this->tableName];
     }
 
     /**
@@ -44,6 +49,33 @@ class Admin_Model extends CI_Model
         //对象写入
         $detailArr && self::$dbCache[$this->tableName]->$primarykey = $idKey;
         return $this;
+    }
+
+    /**
+     * 根据INT主键查询
+     * @param $idKey
+     * @param array $fields
+     * @return $this
+     */
+    public function getByField($field,$val)
+    {
+        if(!isset(self::$dbCache[$this->tableName])){
+            return $this;
+        }
+
+        //数据查询
+        $primarykey = self::$dbCache[$this->tableName.'pri'];
+        $sql=sprintf("select * from %s where %s='%s'",$this->tableName,$field,$val);
+        $detailArr = $this->db->query($sql)->result_array();
+        $detailArr=current($detailArr);
+        if($detailArr)
+            foreach ($detailArr as $_key=>$val){
+                self::$dbCache[$this->tableName]->$_key = $val;
+            }
+
+        //对象写入
+        $detailArr && self::$dbCache[$this->tableName]->$primarykey = $detailArr[$primarykey];
+        return $detailArr;
     }
 
     public function getMeta($field)

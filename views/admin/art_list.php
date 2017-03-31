@@ -3,7 +3,7 @@
 <div class="page-content">
     <div class="page-header">
         <span class="bigger-150">
-            分类信息列表 <?php echo anchor('article/add','新增','class="btn btn-xs btn-primary"')?>
+            分类信息列表 / <?php echo anchor('article/add','新增')?>
         </span>
     </div><!-- /.page-header -->
 
