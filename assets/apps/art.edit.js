@@ -33,7 +33,7 @@ define(function (require) {
         if(categoryError || arttitleError) return;
         contentEditor.sync();
         $.post(
-            PAGE_VAR.SITE_URL+'articles/add_art',
+            PAGE_VAR.SITE_URL+'articles/save_art',
             $('form').serialize(),
             function (response) {
                 if(response.responseCode==200){

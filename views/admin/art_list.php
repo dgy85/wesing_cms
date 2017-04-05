@@ -22,16 +22,10 @@
                                         <span class="lbl"></span>
                                     </label>
                                 </th>
-                                <th>Domain</th>
-                                <th>Price</th>
-                                <th class="hidden-480">Clicks</th>
-
-                                <th>
-                                    <i class="icon-time bigger-110 hidden-480"></i>
-                                    Update
-                                </th>
-                                <th class="hidden-480">Status</th>
-
+                                <th>内容标题</th>
+                                <th>所属分类</th>
+                                <th>创建时间</th>
+                                <th>创建人</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -41,19 +35,14 @@
                                 <tr>
                                     <td class="center">
                                         <label>
-                                            <input type="checkbox" class="ace"/>
+                                            <input type="checkbox" class="ace" _aid="<?php echo $_artItem['art_id']?>"/>
                                             <span class="lbl"></span>
                                         </label>
                                     </td>
-                                    <td>
-                                        <a href="#">ace.com</a>
-                                    </td>
-                                    <td>$45</td>
-                                    <td class="hidden-480">3,330</td>
-                                    <td>Feb 12</td>
-                                    <td class="hidden-480">
-                                        <span class="label label-sm label-warning">Expiring</span>
-                                    </td>
+                                    <td><?php echo trimTitle($_artItem['art_title'])?></td>
+                                    <td><?php echo trimTitle($_artItem['cate_name'])?></td>
+                                    <td><?php echo trimTitle($_artItem['art_ctime'])?></td>
+                                    <td><?php echo trimTitle($_artItem['uname'])?></td>
                                     <td>
                                         <?php echo actLink($_artItem['art_id'],array('base'=>'articles'))?>
                                     </td>
@@ -62,12 +51,12 @@
                             </tbody>
                         </table>
                         <?php pagenation('articles/index',$page,$totalpage)?>
-                    </div><!-- /.table-responsive -->
-                </div><!-- /span -->
-            </div><!-- /row -->
-        </div><!-- /.col -->
-    </div><!-- /.row -->
-</div><!-- /.page-content -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     seajs.use('apps/admin.list.js')
 </script>

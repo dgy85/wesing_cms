@@ -21,9 +21,9 @@
                                 <select name="category" id="category" class="col-xs-10 col-sm-5">
                                     <option value="">---请选择分类---</option>
                                     <?php
-                                        if($list) foreach ($list as $_cateItem):
-                                            printf('<option value="%d">%s</option>',$_cateItem['cate_id'],$_cateItem['cate_name']);
-                                        endforeach;
+                                    if($list) foreach ($list as $_cateItem):
+                                        printf('<option value="%d" %s>%s</option>',$_cateItem['cate_id'],$_cateItem['cate_id'] == $cate_id ? "selected" : '',$_cateItem['cate_name']);
+                                    endforeach;
                                     ?>
                                 </select>
                                 <span class="help-inline col-xs-12 col-sm-7 text-danger">
@@ -36,7 +36,7 @@
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 内容标题</label>
 
                             <div class="col-sm-9">
-                                <input type="text" id="art_title" name="art_title" placeholder="内容标题" class="col-xs-10 col-sm-5">
+                                <input type="text" id="art_title" name="art_title" placeholder="内容标题" class="col-xs-10 col-sm-5" value="<?php echo trimTitle($art_title)?>">
                                 <span class="help-inline col-xs-12 col-sm-7 text-danger">
                                     <span class="middle"></span>
                                 </span>
@@ -49,7 +49,7 @@
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 内容概要</label>
 
                             <div class="col-sm-9">
-                                <textarea id="art_description" name="art_description" placeholder="内容概要" class="col-xs-10 col-sm-5"></textarea>
+                                <textarea id="art_description" name="art_description" placeholder="内容概要" class="col-xs-10 col-sm-5"><?php echo trimTitle($art_desc)?></textarea>
                                 <span class="help-inline col-xs-12 col-sm-7 text-danger">
                                     <span class="middle"></span>
                                 </span>
@@ -60,13 +60,13 @@
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 内容</label>
 
                             <div class="col-sm-9">
-                                <textarea id="art_content" name="art_content" placeholder="内容概要" class="col-sm-10" style="height: 400px"></textarea>
+                                <textarea id="art_content" name="art_content" placeholder="内容概要" class="col-sm-10" style="height: 400px"><?php echo trimTitle($art_content)?></textarea>
                                 <span class="help-inline col-xs-12 col-sm-7 text-danger">
                                     <span class="middle"></span>
                                 </span>
                             </div>
                         </div>
-
+                        <input type="hidden" name="documentid" value="<?php echo $art_id?>">
                         <div class="clearfix form-actions">
                             <div class="col-md-12">
                                 <button class="btn btn-info btn-sm" type="submit">
@@ -89,7 +89,7 @@
 </div><!-- /.page-content -->
 <link rel="stylesheet" href="/assets/lib/js/kindeditor/themes/default/default.css">
 <script>
-    seajs.use('apps/art.add.js')
+    seajs.use('apps/art.edit.js')
 </script>
 </body>
 </html>

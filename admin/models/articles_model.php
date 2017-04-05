@@ -26,7 +26,7 @@ class Articles_model extends Admin_Model
     {
         $totalArr = $this->db->query(sprintf("select count(1) as total from %s",$this->tableName))->result_array();
         $total = current($totalArr);
-        $adminList = $this->db->query(sprintf("select * from %s ORDER  by art_id limit %d,%d" ,$this->tableName,($page-1)*$pagesize,$pagesize ))->result_array();
+        $adminList = $this->db->query(sprintf("select a.*,b.cate_name,c.uname from %s a,wesing_category b,wesing_admin c where a.cate_id = b.cate_id and a.authorid=c.id ORDER  by art_id limit %d,%d" ,$this->tableName,($page-1)*$pagesize,$pagesize ))->result_array();
         return array(
             'list'=>$adminList,
             'totalpage' =>ceil($total['total']/$pagesize),

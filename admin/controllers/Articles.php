@@ -17,7 +17,9 @@ class Articles extends Admin_Controller
 
     public function add()
     {
-        $this->showpage('admin/art_add');
+        $this->load->model('category_model');
+        $args = $this->category_model->getList(1,100);
+        $this->showpage('admin/art_add',$args);
     }
 
     public function delete($documentId)
@@ -32,8 +34,14 @@ class Articles extends Admin_Controller
 
     public function edit($documentId)
     {
+        $this->load->model('category_model');
+
         $documentId = (int)$documentId;
         $adminRs = (array)$this->articles_model->getByPriIntKey($documentId);
+        if(isset($adminRs[0]) && !$adminRs[0]) show_error('文档#'.$documentId.'不存在'.anchor('articles','返回').'',200,'出错了');
+
+        $args = $this->category_model->getList(1,100);
+        $adminRs = array_merge($adminRs,$args);
         $this->showpage('admin/art_edit',$adminRs);
     }
 
@@ -41,6 +49,7 @@ class Articles extends Admin_Controller
     {
         $artTitle = $this->input->post('art_title',true);
         $artDesc = $this->input->post('art_desc',true);
+        $category = $this->input->post('category',true);
         $artContent = $this->input->post('art_content',true);
 
         if(strlen($artTitle)>100){
@@ -48,9 +57,11 @@ class Articles extends Admin_Controller
         }
 
         $this->articles_model->setMeta('art_title',$artTitle);
+        $this->articles_model->setMeta('cate_id',$category);
         $this->articles_model->setMeta('art_desc',$artDesc);
         $this->articles_model->setMeta('art_content',$artContent);
         $this->articles_model->setMeta('art_ctime',date('Y-m-d H:i:s'));
+        $this->articles_model->setMeta('authorid',$this->session->userdata('id'));
         $respMsg = $this->articles_model->addNew();
 
         if($respMsg){
@@ -63,7 +74,7 @@ class Articles extends Admin_Controller
     {
         $documentid = $this->input->post('documentid',true);
         $artTitle = $this->input->post('art_title',true);
-        $artDesc = $this->input->post('art_desc',true);
+        $artDesc = $this->input->post('art_description',true);
         $artContent = $this->input->post('art_content',true);
 
         if(strlen($artTitle)>100){
