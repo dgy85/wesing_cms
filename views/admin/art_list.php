@@ -3,7 +3,7 @@
 <div class="page-content">
     <div class="page-header">
         <span class="bigger-150">
-            分类信息列表 / <?php echo anchor('article/add','新增')?>
+            内容列表 / <?php echo anchor('articles/add','新增')?>
         </span>
     </div><!-- /.page-header -->
 
@@ -37,61 +37,31 @@
                             </thead>
 
                             <tbody>
-                            <tr>
-                                <td class="center">
-                                    <label>
-                                        <input type="checkbox" class="ace"/>
-                                        <span class="lbl"></span>
-                                    </label>
-                                </td>
-                                <td>
-                                    <a href="#">ace.com</a>
-                                </td>
-                                <td>$45</td>
-                                <td class="hidden-480">3,330</td>
-                                <td>Feb 12</td>
-                                <td class="hidden-480">
-                                    <span class="label label-sm label-warning">Expiring</span>
-                                </td>
-                                <td>
-                                    <?php echo actLink(45,array('test'=>'link','tar'=>'base'))?>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="center">
-                                    <label>
-                                        <input type="checkbox" class="ace"/>
-                                        <span class="lbl"></span>
-                                    </label>
-                                </td>
-
-                                <td>
-                                    <a href="#">base.com</a>
-                                </td>
-                                <td>$35</td>
-                                <td class="hidden-480">2,595</td>
-                                <td>Feb 18</td>
-
-                                <td class="hidden-480">
-                                    <span class="label label-sm label-success">Registered</span>
-                                </td>
-
-                                <td>
-                                    <?php echo actLink(33)?>
-                                </td>
-                            </tr>
+                            <?php if(is_array($list)) foreach ($list as $_artItem):?>
+                                <tr>
+                                    <td class="center">
+                                        <label>
+                                            <input type="checkbox" class="ace"/>
+                                            <span class="lbl"></span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <a href="#">ace.com</a>
+                                    </td>
+                                    <td>$45</td>
+                                    <td class="hidden-480">3,330</td>
+                                    <td>Feb 12</td>
+                                    <td class="hidden-480">
+                                        <span class="label label-sm label-warning">Expiring</span>
+                                    </td>
+                                    <td>
+                                        <?php echo actLink($_artItem['art_id'],array('base'=>'articles'))?>
+                                    </td>
+                                </tr>
+                            <?php endforeach;?>
                             </tbody>
                         </table>
-                        <table class="table table-striped table-bordered table-hover">
-                            <thead>
-                            <tr>
-                                <th class="left" style="font-weight: normal;border-bottom: none">
-                                    条数记录
-                                </th>
-                            </tr>
-                            </thead>
-                        </table>
+                        <?php pagenation('articles/index',$page,$totalpage)?>
                     </div><!-- /.table-responsive -->
                 </div><!-- /span -->
             </div><!-- /row -->

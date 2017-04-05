@@ -48,7 +48,7 @@ class Admin_Model extends CI_Model
 
         //对象写入
         $detailArr && self::$dbCache[$this->tableName]->$primarykey = $idKey;
-        return $this;
+        return $detailArr;
     }
 
     /**

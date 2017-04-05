@@ -16,10 +16,20 @@ class Administrator_model extends Admin_Model
 
         $this->db->insert($this->tableName,self::_getEntity());
         if($this->db->affected_rows()>0){
-            return '用户创建成功';
+            return;
         }
 
         return '用户创建失败';
+    }
+
+    public function delete($documentid)
+    {
+        $adminRs = $this->db->query("select uname from wesing_admin where id=?",array($documentid))->result_array();
+        $adminRs = current($adminRs);
+        if(!$adminRs) return '';
+        if($adminRs['uname']=='admin') return '不能删除管理员帐户';
+        $this->db->query('delete from wesing_admin WHERE id=?',array($documentid));
+        return '';
     }
 
     public function getList($page=1,$pagesize=10)
@@ -27,22 +37,17 @@ class Administrator_model extends Admin_Model
         $totalArr = $this->db->query(sprintf("select count(1) as total from %s",$this->tableName))->result_array();
         $total = current($totalArr);
         $adminList = $this->db->query(sprintf("select * from %s ORDER  by id limit %d,%d" ,$this->tableName,($page-1)*$pagesize,$pagesize ))->result_array();
-        $end = ($page-1)*$pagesize+$pagesize;
-        $end = $end > $total ? $total : $end;
-        $start  = ($page-1)*$pagesize+1;
-        $start = $start > $total ? $total : $start;
         return array(
             'list'=>$adminList,
-            'total'=>$total['total'],
             'totalpage' =>ceil($total['total']/$pagesize),
-            'page' =>$page,
-            'start'=> $start,
-            'end'=> $end
+            'page' =>$page
         );
     }
 
-    public function updateRec(array $updateInfo)
+    public function updateRec($documentid,$upass)
     {
-
+        $adminRs = $this->getByPriIntKey($documentid);
+        if(!$adminRs) return '账户不存在';
+        $this->db->query(" update wesing_admin set upass=? where id=?",array(md5($adminRs['uname'].$upass.$adminRs['salt']),$documentid));
     }
 }

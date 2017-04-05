@@ -40,27 +40,19 @@
                                             </label>
                                         </td>
                                         <td>
-                                            <a href="#"><?php echo $_usr['uname']?></a>
+                                            <?php echo $_usr['uname']?>
                                         </td>
                                         <td><?php echo $_usr['ctime']?></td>
                                         <td><?php echo $_usr['lastlogin']?></td>
                                         <td><?php echo long2ip($_usr['lastloginip'])?></td>
                                         <td>
-                                            <?php echo actLink(45,array('test'=>'link','tar'=>'base'))?>
+                                            <?php echo actLink($_usr['id'],array('base'=>'administrator'))?>
                                         </td>
                                     </tr>
                                 <?php endforeach;?>
                             </tbody>
                         </table>
-                        <table class="table table-striped table-bordered table-hover">
-                            <thead>
-                            <tr>
-                                <th class="left" style="font-weight: normal;border-bottom: none">
-                                    <?php printf("&nbsp;&nbsp;共%d条记录&nbsp;&nbsp;当前第%d~%d条&nbsp;&nbsp;%d/%d",$total,$start,$end,$page,$totalpage)?>
-                                </th>
-                            </tr>
-                            </thead>
-                        </table>
+                        <?php pagenation('administrator/index',$page,$totalpage)?>
                     </div><!-- /.table-responsive -->
                 </div><!-- /span -->
             </div><!-- /row -->

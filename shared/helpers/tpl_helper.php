@@ -65,7 +65,9 @@ if(!function_exists('menuShow')){
     };
 }
 
-
+/**
+ * dataTable
+ */
 if(!function_exists('tableHeadRender')){
     function tableHeadRender(array $headers,$trAttrs='',$tdAttrs=''){
         printf('<thead><tr %s>'.PHP_EOL,strip_tags($trAttrs));
@@ -79,6 +81,10 @@ if(!function_exists('tableHeadRender')){
         printf('</tr></thead>'.PHP_EOL);
     }
 }
+
+/**
+ * dataTable
+ */
 if(!function_exists('tableBodyRender')){
     function tableBodyRender(array $body,$trAttrs='',$tdAttrs=''){
         $CI = &get_instance();
@@ -95,16 +101,23 @@ if(!function_exists('tableBodyRender')){
     }
 }
 
-function actLink($recid,array $btns=array(),array $extInfo=array())
+/**
+ * 格式化操作连接
+ * @param $recid
+ * @param array $btns
+ * @param array $extInfo
+ * @return string
+ */
+function actLink($recid,array $extInfo=array())
 {
     $dinfo = json_encode($extInfo);
     return <<<EOD
     <div class="btn-group" data-info='$dinfo'>
-        <button class="btn btn-xs btn-info" _tagId="$recid">
+        <button class="btn btn-xs btn-info editAction" _tagId="$recid">
             <i class="icon-edit bigger-120"></i>
         </button>
 
-        <button class="btn btn-xs btn-danger" _tagId="$recid">
+        <button class="btn btn-xs btn-danger deleteAction" _tagId="$recid">
             <i class="icon-trash bigger-120"></i>
         </button>
     </div>
@@ -112,11 +125,39 @@ EOD;
 ;
 }
 
+/**
+ * 分页
+ * @param $uriPath
+ * @param $currentPage
+ * @param $totalPage
+ */
+function pagenation($uriPath,$currentPage,$totalPage)
+{
+    $start = $currentPage - 5 < 0 ? 1 : $currentPage - 5;
+    $end = $currentPage + 5 > $totalPage ? $totalPage : $currentPage + 5;
+    printf('<div class="center"><ul class="pagination">');
+    printf('<li class="%s"><a href="%s"><i class="icon-double-angle-left"></i></a></li>',$start == $currentPage ? 'disabled' : '',$start == $currentPage ? 'javascript:void(0)' : site_url($uriPath.'/1'));
+    for ($i=$start;$i<=$end;$i++)
+        printf('<li class="%s"><a href="%s">%s</a></li>',$i == $currentPage ? 'active' : '',$i == $currentPage ? 'javascript:void(0)':site_url($uriPath.'/'.$i),$i,$currentPage);
+    printf('<li class="%s"><a href="%s"><i class="icon-double-angle-right"></i></a></li>',$end == $currentPage ? 'disabled' : '',$end == $currentPage?'javascript:void(0)':site_url($uriPath.'/'.$end));
+    printf('</ul></div>');
+}
+
+/**
+ * 过滤空格
+ * @param $title
+ * @return string
+ */
 function trimTitle($title)
 {
     return htmlentities(strip_tags($title));
 }
 
+/**
+ * 保存模板
+ * @param $tplString
+ * @param $filename
+ */
 function saveTpl($tplString,$filename)
 {
     if(strlen(trim($tplString))==0) return;
