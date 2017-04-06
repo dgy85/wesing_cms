@@ -18,6 +18,7 @@ class Articles extends Admin_Controller
     public function add()
     {
         $this->load->model('category_model');
+        $this->category_model->singlepage=0;
         $args = $this->category_model->getList(1,100);
         $this->showpage('admin/art_add',$args);
     }
@@ -40,6 +41,7 @@ class Articles extends Admin_Controller
         $adminRs = (array)$this->articles_model->getByPriIntKey($documentId);
         if(isset($adminRs[0]) && !$adminRs[0]) show_error('文档#'.$documentId.'不存在'.anchor('articles','返回').'',200,'出错了');
 
+        $this->category_model->singlepage=0;
         $args = $this->category_model->getList(1,100);
         $adminRs = array_merge($adminRs,$args);
         $this->showpage('admin/art_edit',$adminRs);

@@ -22,8 +22,28 @@ define(function (require) {
                 alert('自定义错误信息: ' + str);
             }
         });
+        var uploadmetabutton = K.uploadbutton({
+            button : K('#uploadmetaButton')[0],
+            fieldName : 'imgFile',
+            url : '/assets/lib/js/kindeditor/php/upload_json.php?dir=image',
+            afterUpload : function(data) {
+                if (data.error === 0) {
+                    var url = K.formatUrl(data.url, 'absolute');
+                    K('#meta_image').val(url);
+                } else {
+                    alert(data.message);
+                }
+            },
+            afterError : function(str) {
+                alert('自定义错误信息: ' + str);
+            }
+        });
+
         uploadlistbutton.fileBox.change(function(e) {
             uploadlistbutton.submit();
+        });
+        uploadmetabutton.fileBox.change(function(e) {
+            uploadmetabutton.submit();
         });
     });
     if($('#ifpage').prop('checked') && !contentEditor)
@@ -59,7 +79,7 @@ define(function (require) {
 
         $.post(
             PAGE_VAR.SITE_URL+'category/save_category',
-            $('form').serialize()+'&pagecontent='+contentEditor.html(),
+            $('form').serialize()+(contentEditor ? '&pagecontent='+contentEditor.html() : ''),
             function (response) {
                 if(response.responseCode==200){
                     return window.location.href=PAGE_VAR.SITE_URL+'category';

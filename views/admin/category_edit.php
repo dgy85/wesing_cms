@@ -60,6 +60,18 @@
                         </div>
 
                         <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 分类大图</label>
+
+                            <div class="col-sm-9">
+                                <input readonly type="text" id="meta_image" value="<?php echo $cate_metaimage?>" name="meta_image" placeholder="分类大图" class="col-xs-10 col-sm-5">
+                                &nbsp;&nbsp;<input type="button" id="uploadmetaButton" value="Upload" />
+                                <span class="help-inline col-xs-12 col-sm-7 text-danger">
+												<span class="middle"></span>
+											</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 分类排序</label>
 
                             <div class="col-sm-9">

@@ -1,5 +1,6 @@
 <?php tpl('wesing_header')?>
 <body>
+<link rel="stylesheet" href="/assets/styles/style.css">
 <div class="index_banner" id="banner_tabs">
     <ul>
         <li><a href="#"><img src="/assets/images/1.jpg" width="100%"></a></li>
@@ -32,7 +33,7 @@
                 $rouCounter = isset($map[$_key]) ? $map[$_key] : 0;
                 $class = $direction.$rouCounter;
                 if($rouCounter == 0) continue;
-                echo '<a href="'.site_url('home/cate/'.$_cateItem['cate_id']).'" class="'.$class.'"><img src="/assets/images/menu_'.($_key+1).'.png" width="100%" /></a>';
+                echo '<a href="'.site_url('home/cate/'.$_cateItem['cate_id']).'" class="'.$class.'"><img alt="'.$_cateItem['cate_name'].'" src="'.($_cateItem['cate_thub']).'" width="100%" /></a>';
             }
     ?>
 

@@ -95,6 +95,7 @@ class Category extends Admin_Controller
         $ifactivity = $this->input->post('ifactivity',true);
         $pageContent= $this->input->post('pagecontent',true);
         $thub = $this->input->post('thub',true);
+        $meta_image = $this->input->post('meta_image',true);
         $sort = (int)$this->input->post('sort',true);
 
         if(strlen($categoryname)>20){
@@ -109,20 +110,20 @@ class Category extends Admin_Controller
         $this->category_model->setMeta('parentid',$parentid);
         $this->category_model->setMeta('cate_name',$categoryname);
         $this->category_model->setMeta('cate_thub',$thub);
+        $this->category_model->setMeta('cate_metaimage',$meta_image);
         $this->category_model->setMeta('cate_sort',$sort);
         $respMsg = $this->category_model->updateRec($documentid);
 
         $this->load->model('articles_model');
         $this->articles_model->disabled=0;
         $ifExists = $this->articles_model->getByField('cate_id',$documentid);
-        echo $this->db->last_query();
         if($ifpage=='on'){
             //先删除所有的文章
             if($ifExists && !isset($ifExists['art_id'])){
                 foreach ($ifExists as $_artItem){
                     $this->articles_model->delete($_artItem['art_id']);
                 }
-            }else{
+            }elseif(isset($ifExists['art_id'])){
                 $this->articles_model->delete($ifExists['art_id']);
             }
             $this->articles_model->setMeta('art_id','');

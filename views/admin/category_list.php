@@ -24,6 +24,7 @@
                                 </th>
                                 <th>分类名称</th>
                                 <th class="hidden-sm hidden-xs">列表图片</th>
+                                <th class="hidden-sm hidden-xs">分类大图</th>
                                 <th class="hidden-sm hidden-xs">排序</th>
                                 <th></th>
                             </tr>
@@ -40,7 +41,10 @@
                                         </td>
                                         <td><?php echo $_cateitem['cate_name']?></td>
                                         <td class="hidden-sm hidden-xs">
-                                            <?php printf('<a href="%s">%s</a>',$_cateitem['cate_thub'],$_cateitem['cate_thub'])?>
+                                            <?php printf('<a href="%s" target="_blank">%s</a>',$_cateitem['cate_thub'],$_cateitem['cate_thub'])?>
+                                        </td>
+                                        <td class="hidden-sm hidden-xs">
+                                            <?php printf('<a href="%s" target="_blank">%s</a>',$_cateitem['cate_metaimage'],$_cateitem['cate_metaimage'])?>
                                         </td>
                                         <td class="hidden-sm hidden-xs"><?php echo $_cateitem['cate_sort']?></td>
                                         <td>
