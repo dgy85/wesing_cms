@@ -23,8 +23,8 @@
                                     </label>
                                 </th>
                                 <th>分类名称</th>
-                                <th>列表图片</th>
-                                <th>排序</th>
+                                <th class="hidden-sm hidden-xs">列表图片</th>
+                                <th class="hidden-sm hidden-xs">排序</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -39,10 +39,10 @@
                                             </label>
                                         </td>
                                         <td><?php echo $_cateitem['cate_name']?></td>
-                                        <td>
+                                        <td class="hidden-sm hidden-xs">
                                             <?php printf('<a href="%s">%s</a>',$_cateitem['cate_thub'],$_cateitem['cate_thub'])?>
                                         </td>
-                                        <td><?php echo $_cateitem['cate_sort']?></td>
+                                        <td class="hidden-sm hidden-xs"><?php echo $_cateitem['cate_sort']?></td>
                                         <td>
                                             <?php echo actLink($_cateitem['cate_id'],array('base'=>'category'))?>
                                         </td>

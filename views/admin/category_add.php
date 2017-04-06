@@ -49,6 +49,39 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 是否单页</label>
+
+                            <div class="col-sm-1" style="padding-top: 7px">
+                                <input type="checkbox" id="ifpage" name="ifpage" class="col-xs-10 col-sm-5">
+                                <span class="help-inline col-xs-12 col-sm-7 text-danger">
+												<span class="middle"></span>
+											</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group switch-content hidden">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 是否活动</label>
+
+                            <div class="col-sm-1" style="padding-top: 7px">
+                                <input type="checkbox" id="ifactivity" name="ifactivity" class="col-xs-10 col-sm-5">
+                                <span class="help-inline col-xs-12 col-sm-7 text-danger">
+												<span class="middle"></span>
+											</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group switch-content hidden">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 页面内容</label>
+
+                            <div class="col-sm-1" style="padding-top: 7px">
+                                <textarea name="pagecontent" id="pagecontent" cols="30" rows="10"></textarea>
+                                <span class="help-inline col-xs-12 col-sm-7 text-danger">
+												<span class="middle"></span>
+											</span>
+                            </div>
+                        </div>
+
                         <div class="clearfix form-actions">
                             <div class="col-md-12">
                                 <button class="btn btn-info btn-sm" type="submit">

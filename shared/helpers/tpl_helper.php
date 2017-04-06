@@ -133,6 +133,7 @@ EOD;
  */
 function pagenation($uriPath,$currentPage,$totalPage)
 {
+    if($totalPage <=1) return;
     $start = $currentPage - 5 < 0 ? 1 : $currentPage - 5;
     $end = $currentPage + 5 > $totalPage ? $totalPage : $currentPage + 5;
     printf('<div class="center"><ul class="pagination">');

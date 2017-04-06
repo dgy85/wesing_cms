@@ -67,15 +67,22 @@ class Admin_Model extends CI_Model
         $primarykey = self::$dbCache[$this->tableName.'pri'];
         $sql=sprintf("select * from %s where %s='%s'",$this->tableName,$field,$val);
         $detailArr = $this->db->query($sql)->result_array();
-        $detailArr=current($detailArr);
-        if($detailArr)
-            foreach ($detailArr as $_key=>$val){
+        if(sizeof($detailArr)==1){
+            $detailItem=current($detailArr);
+            foreach ($detailItem as $_key=>$val){
                 self::$dbCache[$this->tableName]->$_key = $val;
             }
 
-        //对象写入
-        $detailArr && self::$dbCache[$this->tableName]->$primarykey = $detailArr[$primarykey];
+            //对象写入
+            $detailItem && self::$dbCache[$this->tableName]->$primarykey = $detailItem[$primarykey];
+        }
+
         return $detailArr;
+    }
+
+    public function getLastInsertId()
+    {
+        return $this->db->insert_id();
     }
 
     public function getMeta($field)

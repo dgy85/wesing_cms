@@ -24,8 +24,8 @@
                                 </th>
                                 <th>内容标题</th>
                                 <th>所属分类</th>
-                                <th>创建时间</th>
-                                <th>创建人</th>
+                                <th class="hidden-sm hidden-xs">创建时间</th>
+                                <th class="hidden-sm hidden-xs">创建人</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -41,8 +41,8 @@
                                     </td>
                                     <td><?php echo trimTitle($_artItem['art_title'])?></td>
                                     <td><?php echo trimTitle($_artItem['cate_name'])?></td>
-                                    <td><?php echo trimTitle($_artItem['art_ctime'])?></td>
-                                    <td><?php echo trimTitle($_artItem['uname'])?></td>
+                                    <td class="hidden-sm hidden-xs"><?php echo trimTitle($_artItem['art_ctime'])?></td>
+                                    <td class="hidden-sm hidden-xs"><?php echo trimTitle($_artItem['uname'])?></td>
                                     <td>
                                         <?php echo actLink($_artItem['art_id'],array('base'=>'articles'))?>
                                     </td>

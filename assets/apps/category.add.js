@@ -1,4 +1,9 @@
 define(function (require) {
+    var contentEditor;
+    var items = ['fullscreen', 'undo', 'redo', 'justifyleft', 'justifycenter', 'justifyright',
+        'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', '|', 'title', 'fontname', 'fontsize', '|', 'textcolor', 'bgcolor', 'bold',
+        'italic', 'underline', 'strikethrough', 'removeformat', '|', 'image', 'media', 'advtable', 'link', 'unlink'];
+
     require('lib/js/kindeditor/kindeditor-min.js');
     KindEditor.ready(function (K) {
         var uploadlistbutton = K.uploadbutton({
@@ -22,6 +27,13 @@ define(function (require) {
         });
     });
 
+    $('#ifpage').on('click',function(){
+        if($(this).prop('checked')){
+            $('.switch-content').removeClass('hidden');
+            contentEditor ? "" : contentEditor = KindEditor.create('#pagecontent'),contentEditor.items = items;
+        } else $('.switch-content').addClass('hidden');
+    });
+    contentEditor ? contentEditor.sync() : '';
     $('form').on('submit',function(e){
         e.preventDefault();
         var categoryname = $('#categoryname').val();

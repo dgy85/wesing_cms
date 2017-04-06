@@ -18,15 +18,15 @@ class Articles_model extends Admin_Model
 
     public function delete($documentid)
     {
-        $this->db->query('delete from wesing_article WHERE art_id=?',array($documentid));
+        $this->db->query('update wesing_article set disabled=1 WHERE disabled = 0 and art_id=?',array($documentid));
         return '';
     }
 
     public function getList($page=1,$pagesize=10)
     {
-        $totalArr = $this->db->query(sprintf("select count(1) as total from %s",$this->tableName))->result_array();
+        $totalArr = $this->db->query(sprintf("select count(1) as total from %s where disabled=0",$this->tableName))->result_array();
         $total = current($totalArr);
-        $adminList = $this->db->query(sprintf("select a.*,b.cate_name,c.uname from %s a,wesing_category b,wesing_admin c where a.cate_id = b.cate_id and a.authorid=c.id ORDER  by art_id limit %d,%d" ,$this->tableName,($page-1)*$pagesize,$pagesize ))->result_array();
+        $adminList = $this->db->query(sprintf("select a.*,b.cate_name,c.uname from %s a,wesing_category b,wesing_admin c where a.cate_id = b.cate_id and a.authorid=c.id and a.disabled=0 and b.disabled=0 ORDER  by art_id limit %d,%d" ,$this->tableName,($page-1)*$pagesize,$pagesize ))->result_array();
         return array(
             'list'=>$adminList,
             'totalpage' =>ceil($total['total']/$pagesize),
