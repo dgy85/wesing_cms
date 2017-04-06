@@ -26,6 +26,8 @@ define(function (require) {
             uploadlistbutton.submit();
         });
     });
+    if($('#ifpage').prop('checked') && !contentEditor)
+        contentEditor = KindEditor.create('#pagecontent'),contentEditor.items = items;
 
     $('#ifpage').on('click',function(){
         if($(this).prop('checked')){
@@ -33,7 +35,6 @@ define(function (require) {
             contentEditor ? "" : contentEditor = KindEditor.create('#pagecontent'),contentEditor.items = items;
         } else $('.switch-content').addClass('hidden');
     });
-    contentEditor ? contentEditor.sync() : '';
 
     $('form').on('submit',function(e){
         e.preventDefault();
@@ -58,7 +59,7 @@ define(function (require) {
 
         $.post(
             PAGE_VAR.SITE_URL+'category/save_category',
-            $('form').serialize(),
+            $('form').serialize()+'&pagecontent='+contentEditor.html(),
             function (response) {
                 if(response.responseCode==200){
                     return window.location.href=PAGE_VAR.SITE_URL+'category';

@@ -4,10 +4,10 @@ class Articles_model extends Admin_Model
 {
     public function addNew()
     {
+        $this->disabled=0;
         if($this->getByField('art_title',$this->getMeta('art_title'))){
             return '内容已存在';
         }
-
         $this->db->insert($this->tableName,self::_getEntity());
         if($this->db->affected_rows()>0){
             return;
@@ -24,9 +24,10 @@ class Articles_model extends Admin_Model
 
     public function getList($page=1,$pagesize=10)
     {
-        $totalArr = $this->db->query(sprintf("select count(1) as total from %s where disabled=0",$this->tableName))->result_array();
+        $whereStr = $this->whereCondition ? ' and '.implode(' and ',$this->whereCondition) : '';
+        $totalArr = $this->db->query(sprintf("select count(1) as total from %s where disabled=0 %s",$this->tableName,$whereStr))->result_array();
         $total = current($totalArr);
-        $adminList = $this->db->query(sprintf("select a.*,b.cate_name,c.uname from %s a,wesing_category b,wesing_admin c where a.cate_id = b.cate_id and a.authorid=c.id and a.disabled=0 and b.disabled=0 ORDER  by art_id limit %d,%d" ,$this->tableName,($page-1)*$pagesize,$pagesize ))->result_array();
+        $adminList = $this->db->query(sprintf("select a.*,b.cate_name,c.uname from %s a,wesing_category b,wesing_admin c where a.cate_id = b.cate_id and a.authorid=c.id and a.disabled=0 and b.disabled=0 %s ORDER  by art_id limit %d,%d" ,$this->tableName,$whereStr,($page-1)*$pagesize,$pagesize ))->result_array();
         return array(
             'list'=>$adminList,
             'totalpage' =>ceil($total['total']/$pagesize),

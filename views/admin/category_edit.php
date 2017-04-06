@@ -1,4 +1,5 @@
 <?php tpl("admin_header") ?>
+<?php $ifHidden = $singlepage ? '' : 'hidden'?>
 <body>
 <div class="page-content">
     <div class="page-header">
@@ -13,6 +14,26 @@
             <div class="row">
                 <div class="col-xs-12">
                     <form class="form-horizontal" role="form" method="post">
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 上级分类</label>
+
+                            <div class="col-sm-9">
+                                <select name="parentid" id="parentid" class="col-xs-10 col-sm-5">
+                                    <option value="">作为顶级分类</option>
+                                    <?php
+                                    if($catelist && is_array($catelist))
+                                        foreach ($catelist as $_cateItem){
+                                            printf('<option value="%d" %s>%s</option>',$_cateItem['cate_id'],$_cateItem['cate_id']==$parentid ? 'selected':'',$_cateItem['cate_name']);
+                                        }
+                                    ?>
+                                </select>
+                                <span class="help-inline col-xs-12 col-sm-7 text-danger">
+                                    <span class="middle"></span>
+                                </span>
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 分类名称</label>
 
@@ -53,29 +74,29 @@
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 是否单页</label>
 
                             <div class="col-sm-1" style="padding-top: 7px">
-                                <input type="checkbox" id="ifpage" name="ifpage" class="col-xs-10 col-sm-5">
+                                <input type="checkbox" id="ifpage" name="ifpage" class="col-xs-10 col-sm-5" <?php echo $singlepage?'checked':''?>>
                                 <span class="help-inline col-xs-12 col-sm-7 text-danger">
 												<span class="middle"></span>
 											</span>
                             </div>
                         </div>
 
-                        <div class="form-group switch-content hidden">
+                        <div class="form-group switch-content <?php echo $ifHidden?>">
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 是否活动</label>
 
                             <div class="col-sm-1" style="padding-top: 7px">
-                                <input type="checkbox" id="ifactivity" name="ifactivity" class="col-xs-10 col-sm-5">
+                                <input type="checkbox" id="ifactivity" name="ifactivity" class="col-xs-10 col-sm-5" <?php echo isset($if_activity) && $if_activity ? 'checked' : ''?>>
                                 <span class="help-inline col-xs-12 col-sm-7 text-danger">
 												<span class="middle"></span>
 											</span>
                             </div>
                         </div>
 
-                        <div class="form-group switch-content hidden">
+                        <div class="form-group switch-content <?php echo $ifHidden?>">
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 页面内容</label>
 
                             <div class="col-sm-1" style="padding-top: 7px">
-                                <textarea name="pagecontent" id="pagecontent" cols="30" rows="10"></textarea>
+                                <textarea name="pagecontentArea" id="pagecontent" cols="30" rows="10"><?php echo isset($art_content) ? $art_content : ''?></textarea>
                                 <span class="help-inline col-xs-12 col-sm-7 text-danger">
 												<span class="middle"></span>
 											</span>

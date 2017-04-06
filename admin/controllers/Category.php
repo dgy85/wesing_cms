@@ -16,7 +16,9 @@ class Category extends Admin_Controller
 
     public function add()
     {
-        $this->showpage('admin/category_add');
+        $this->category_model->parentid=0;
+        $args = $this->category_model->getList();
+        $this->showpage('admin/category_add',$args);
     }
 
     public function delete($documentId)
@@ -32,13 +34,24 @@ class Category extends Admin_Controller
     public function edit($documentId)
     {
         $documentId = (int)$documentId;
+        $this->category_model->parentid=0;
+        $catelist = $this->category_model->getList();
         $adminRs = (array)$this->category_model->getByPriIntKey($documentId);
+        $adminRs['catelist'] = $catelist['list'] ?: array();
+        if($adminRs['singlepage']){
+            $this->load->model('articles_model');
+            $this->articles_model->cate_id=$adminRs['cate_id'];
+            $this->articles_model->disabled=0;
+            $artItem = $this->articles_model->getByField(1,1);
+            $adminRs = array_merge($adminRs,$artItem);
+        }
         $this->showpage('admin/category_edit',$adminRs);
     }
 
     public function add_category()
     {
         $categoryname = $this->input->post('categoryname',true);
+        $parentid = (int)$this->input->post('parentid',true);
         $ifpage = $this->input->post('ifpage',true);
         $ifactivity = $this->input->post('ifactivity',true);
         $pageContent= $this->input->post('pagecontent');
@@ -49,6 +62,7 @@ class Category extends Admin_Controller
             $this->_response('分类名称不能超过20个字符',400);
         }
         $this->category_model->setMeta('singlepage',$ifpage=='on');
+        $this->category_model->setMeta('parentid',$parentid);
         $this->category_model->setMeta('cate_name',$categoryname);
         $this->category_model->setMeta('cate_thub',$thub);
         $this->category_model->setMeta('cate_sort',$sort);
@@ -76,9 +90,10 @@ class Category extends Admin_Controller
     {
         $documentid = $this->input->post('documentid',true);
         $categoryname = $this->input->post('categoryname',true);
+        $parentid = (int)$this->input->post('parentid',true);
         $ifpage = $this->input->post('ifpage',true);
         $ifactivity = $this->input->post('ifactivity',true);
-        $pageContent= $this->input->post('pagecontent');
+        $pageContent= $this->input->post('pagecontent',true);
         $thub = $this->input->post('thub',true);
         $sort = (int)$this->input->post('sort',true);
 
@@ -91,29 +106,35 @@ class Category extends Admin_Controller
         if(!$cateRs) $this->_response('分类信息不存在',400);
 
         $this->category_model->setMeta('singlepage',$ifpage=='on');
+        $this->category_model->setMeta('parentid',$parentid);
         $this->category_model->setMeta('cate_name',$categoryname);
         $this->category_model->setMeta('cate_thub',$thub);
         $this->category_model->setMeta('cate_sort',$sort);
         $respMsg = $this->category_model->updateRec($documentid);
 
         $this->load->model('articles_model');
+        $this->articles_model->disabled=0;
         $ifExists = $this->articles_model->getByField('cate_id',$documentid);
-
+        echo $this->db->last_query();
         if($ifpage=='on'){
             //先删除所有的文章
-            if($ifExists){
+            if($ifExists && !isset($ifExists['art_id'])){
                 foreach ($ifExists as $_artItem){
                     $this->articles_model->delete($_artItem['art_id']);
                 }
+            }else{
+                $this->articles_model->delete($ifExists['art_id']);
             }
+            $this->articles_model->setMeta('art_id','');
+            $this->articles_model->setMeta('disabled',0);
             $this->articles_model->setMeta('art_title',$categoryname);
-            $this->articles_model->setMeta('cate_id',$this->category_model->getMeta('cate_id'));
+            $this->articles_model->setMeta('cate_id',$documentid);
             $this->articles_model->setMeta('art_desc',mb_substr(strip_tags($pageContent),0,200));
             $this->articles_model->setMeta('art_content',$pageContent);
             $this->articles_model->setMeta('if_activity',$ifactivity=='on');
             $this->articles_model->setMeta('art_ctime',date('Y-m-d H:i:s'));
             $this->articles_model->setMeta('authorid',$this->session->userdata('id'));
-            $this->articles_model->addNew();
+            $artInst = $this->articles_model->addNew();
         }
 
         if($respMsg){

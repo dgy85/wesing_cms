@@ -13,6 +13,26 @@
             <div class="row">
                 <div class="col-xs-12">
                     <form class="form-horizontal" role="form" method="post">
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 上级分类</label>
+
+                            <div class="col-sm-9">
+                                <select name="parentid" id="parentid" class="col-xs-10 col-sm-5">
+                                    <option value="">作为顶级分类</option>
+                                    <?php
+                                        if($list && is_array($list))
+                                            foreach ($list as $_cateItem){
+                                                printf('<option value="%d">%s</option>',$_cateItem['cate_id'],$_cateItem['cate_name']);
+                                            }
+                                    ?>
+                                </select>
+                                <span class="help-inline col-xs-12 col-sm-7 text-danger">
+                                    <span class="middle"></span>
+                                </span>
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 分类名称</label>
 
@@ -75,7 +95,7 @@
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 页面内容</label>
 
                             <div class="col-sm-1" style="padding-top: 7px">
-                                <textarea name="pagecontent" id="pagecontent" cols="30" rows="10"></textarea>
+                                <textarea name="pagecontentArea" id="pagecontent" cols="30" rows="10"></textarea>
                                 <span class="help-inline col-xs-12 col-sm-7 text-danger">
 												<span class="middle"></span>
 											</span>

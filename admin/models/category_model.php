@@ -27,9 +27,10 @@ class Category_model extends Admin_Model
 
     public function getList($page=1,$pagesize=10)
     {
-        $totalArr = $this->db->query(sprintf("select count(1) as total from %s where disabled=0",$this->tableName))->result_array();
+        $whereStr = $this->whereCondition ? ' and '.implode(' and ',$this->whereCondition) : '';
+        $totalArr = $this->db->query(sprintf("select count(1) as total from %s where disabled=0 %s",$this->tableName,$whereStr))->result_array();
         $total = current($totalArr);
-        $adminList = $this->db->query(sprintf("select * from %s where disabled=0 ORDER  by cate_sort,cate_id limit %d,%d" ,$this->tableName,($page-1)*$pagesize,$pagesize ))->result_array();
+        $adminList = $this->db->query(sprintf("select * from %s where disabled=0 %s ORDER  by cate_sort,cate_id limit %d,%d" ,$this->tableName,$whereStr,($page-1)*$pagesize,$pagesize ))->result_array();
         return array(
             'list'=>$adminList,
             'totalpage' =>ceil($total['total']/$pagesize),

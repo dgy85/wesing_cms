@@ -33,7 +33,7 @@ define(function (require) {
             contentEditor ? "" : contentEditor = KindEditor.create('#pagecontent'),contentEditor.items = items;
         } else $('.switch-content').addClass('hidden');
     });
-    contentEditor ? contentEditor.sync() : '';
+
     $('form').on('submit',function(e){
         e.preventDefault();
         var categoryname = $('#categoryname').val();
@@ -57,7 +57,7 @@ define(function (require) {
 
         $.post(
             PAGE_VAR.SITE_URL+'category/add_category',
-            $('form').serialize(),
+            $('form').serialize()+'&pagecontent='+contentEditor.html(),
             function (response) {
                 if(response.responseCode==200){
                     return window.location.href=PAGE_VAR.SITE_URL+'category';

@@ -4,6 +4,7 @@ class Admin_Model extends CI_Model
 {
     protected static $dbCache = array();
     protected $tableName;
+    protected $whereCondition = array();
     public function __construct()
     {
         parent::__construct();
@@ -13,6 +14,12 @@ class Admin_Model extends CI_Model
         if( $this->tableName && !isset(self::$dbCache[$this->tableName])){
             $this->_init($this->tableName,self::$dbCache);
         }
+    }
+
+    public function __set($name, $value)
+    {
+        if(!property_exists(self::$dbCache[$this->tableName],$name)) return;
+        $this->whereCondition[]=$name.'='.(preg_match('/^\d+$/',$value) ? $value : '\''.$value.'\'');
     }
 
     protected function _getEntity()
@@ -59,22 +66,24 @@ class Admin_Model extends CI_Model
      */
     public function getByField($field,$val)
     {
-        if(!isset(self::$dbCache[$this->tableName])){
+        if($field!=1 && !isset(self::$dbCache[$this->tableName])){
             return $this;
         }
 
+        $whereStr = $this->whereCondition ? ' and '.implode(' and ',$this->whereCondition) : '';
+
         //数据查询
         $primarykey = self::$dbCache[$this->tableName.'pri'];
-        $sql=sprintf("select * from %s where %s='%s'",$this->tableName,$field,$val);
+        $sql=sprintf("select * from %s where %s='%s' %s",$this->tableName,$field,$val,$whereStr);
         $detailArr = $this->db->query($sql)->result_array();
         if(sizeof($detailArr)==1){
-            $detailItem=current($detailArr);
-            foreach ($detailItem as $_key=>$val){
+            $detailArr=current($detailArr);
+            foreach ($detailArr as $_key=>$val){
                 self::$dbCache[$this->tableName]->$_key = $val;
             }
 
             //对象写入
-            $detailItem && self::$dbCache[$this->tableName]->$primarykey = $detailItem[$primarykey];
+            self::$dbCache[$this->tableName]->$primarykey = $detailArr[$primarykey];
         }
 
         return $detailArr;
