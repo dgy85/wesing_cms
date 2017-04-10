@@ -26,7 +26,7 @@
                                 <th class="hidden-sm hidden-xs">列表图片</th>
                                 <th class="hidden-sm hidden-xs">分类大图</th>
                                 <th class="hidden-sm hidden-xs">排序</th>
-                                <th></th>
+                                <th class="hidden-sm hidden-xs">操作</th>
                             </tr>
                             </thead>
 
@@ -35,7 +35,7 @@
                                     <tr>
                                         <td class="center">
                                             <label>
-                                                <input type="checkbox" class="ace"_itemId="<?php echo $_cateitem['cate_id']?>"/>
+                                                <input type="checkbox" class="ace" _itemId="<?php echo $_cateitem['cate_id']?>"/>
                                                 <span class="lbl"></span>
                                             </label>
                                         </td>
