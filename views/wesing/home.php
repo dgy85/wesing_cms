@@ -1,24 +1,23 @@
 <?php tpl('wesing_header')?>
 <body>
 <link rel="stylesheet" href="/assets/styles/style.css">
+<?php if($sliderlist):?>
 <div class="index_banner" id="banner_tabs">
     <ul>
-        <li><a href="#"><img src="/assets/images/1.jpg" width="100%"></a></li>
-        <li><a href="#"><img src="/assets/images/2.jpg" width="100%"></a></li>
-        <li><a href="#"><img src="/assets/images/3.jpg" width="100%"></a></li>
-        <li><a href="#"><img src="/assets/images/4.jpg" width="100%"></a></li>
-        <li><a href="#"><img src="/assets/images/5.jpg" width="100%"></a></li>
+        <?php foreach ($sliderlist as $_slider){
+            printf('<li><a href="%s"><img src="%s" width="100%%"></a></li>',$_slider['s_target'],$_slider['s_thub']);
+        }?>
     </ul>
     <cite>
-        <span class="cur">1</span>
-        <span>2</span>
-        <span>3</span>
-        <span>4</span>
-        <span>5</span>
+        <?php
+            foreach ($sliderlist as $_idx=>$_slider){
+                printf('<span class="%s">%d</span>',$_idx==0 ? 'cur':'',$_idx+1);
+            }
+        ?>
     </cite>
     <div class="c"></div>
 </div>
-
+<?php endif;?>
 <!--logo-->
 <div class="logo">
     <img src="/assets/images/logo.png" width="27.5%" class="logo1" /> </div>

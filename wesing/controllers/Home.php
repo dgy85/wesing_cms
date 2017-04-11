@@ -11,8 +11,9 @@ class Home extends WeSing_Controller {
 
     public function index()
 	{
-	    $args = (array)$this->page_model->getCategoryList();
-
+	    $cate = (array)$this->page_model->getCategoryList();
+	    $slider = (array)$this->page_model->getSliderList();
+        $args = array_merge(array(),$cate,$slider);
 		$this->load->view('wesing/home',$args);
 	}
 

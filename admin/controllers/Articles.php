@@ -54,7 +54,7 @@ class Articles extends Admin_Controller
         $category = $this->input->post('category',true);
         $artContent = $this->input->post('art_content',true);
 
-        if(strlen($artTitle)>100){
+        if(mb_strlen($artTitle)>100){
             $this->_response('文章标题不能超过100个字符',400);
         }
 
@@ -79,7 +79,7 @@ class Articles extends Admin_Controller
         $artDesc = $this->input->post('art_description',true);
         $artContent = $this->input->post('art_content',true);
 
-        if(strlen($artTitle)>100){
+        if(mb_strlen($artTitle)>100){
             $this->_response('文章标题不能超过100个字符',400);
         }
 

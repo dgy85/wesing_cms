@@ -58,7 +58,7 @@ class Category extends Admin_Controller
         $thub = $this->input->post('thub',true);
         $sort = (int)$this->input->post('sort',true);
 
-        if(strlen($categoryname)>20){
+        if(mb_strlen($categoryname)>20){
             $this->_response('分类名称不能超过20个字符',400);
         }
         $this->category_model->setMeta('singlepage',$ifpage=='on');
@@ -98,7 +98,7 @@ class Category extends Admin_Controller
         $meta_image = $this->input->post('meta_image',true);
         $sort = (int)$this->input->post('sort',true);
 
-        if(strlen($categoryname)>20){
+        if(mb_strlen($categoryname)>20){
             $this->_response('分类名称不能超过20个字符',400);
         }
 

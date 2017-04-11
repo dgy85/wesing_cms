@@ -32,4 +32,11 @@ class Page_model extends CI_Model
         return array('catelist'=>$cateList);
     }
 
+    public function getSliderList()
+    {
+        $sliderlist = $this->db->query("select * from wesing_slider where disabled=0 ORDER by s_id desc limit 4")->result_array();
+
+        return array('sliderlist'=>$sliderlist);
+    }
+
 }

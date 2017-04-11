@@ -22,9 +22,11 @@
                                         <span class="lbl"></span>
                                     </label>
                                 </th>
-                                <th>Domain</th>
-                                <th>Price</th>
-                                <th class="hidden-480">Clicks</th>
+                                <th>活动分类</th>
+                                <th>活动标题</th>
+                                <th>姓　　名</th>
+                                <th>联系电话</th>
+                                <th>登记时间</th>
 
                                 <th>
                                     <i class="icon-time bigger-110 hidden-480"></i>
