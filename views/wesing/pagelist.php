@@ -27,14 +27,12 @@
                                         <a href="#" class="join"><img src="/assets/images/wycj.png" width="100%"/></a>
                                     <?php endif; ?>
                                 </li>
-                            <?php elseif ($_cateItem['art']): ?>
+                            <?php elseif ($_cateItem['art']):?>
                                 <li>
                                     <ul class="list3">
-                                        <li><a href="xq_xyzfhd.html"><span>2017-01-01</span>活动名称00001</a></li>
-                                        <li><a href="xq_xyzfhd.html"><span>2017-01-01</span>活动名称00002</a></li>
-                                        <li><a href="xq_xyzfhd.html"><span>2017-01-01</span>活动名称00003</a></li>
-                                        <li><a href="xq_xyzfhd.html"><span>2017-01-01</span>活动名称00004</a></li>
-                                        <li><a href="xq_xyzfhd.html"><span>2017-01-01</span>活动名称00005</a></li>
+                                        <?php foreach ($_cateItem['art'] as $_artItem){
+                                            printf('<li><a href="%s"><span>%s</span>%s</a></li>',site_url('home/art/'.$_artItem['art_id']),date('Y-m-d',strtotime($_artItem['art_ctime'])),$_artItem['art_title']);
+                                        }?>
                                     </ul>
                                 </li>
                             <?php endif; ?>

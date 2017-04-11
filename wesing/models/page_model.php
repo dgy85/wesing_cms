@@ -39,4 +39,12 @@ class Page_model extends CI_Model
         return array('sliderlist'=>$sliderlist);
     }
 
+    public function getArt($documentid)
+    {
+        $documentid = (int)$documentid;
+        $art = $this->db->query("select * from wesing_article where disabled=0 and art_id=?",array($documentid))->result_array();
+
+        return (array)current($art);
+    }
+
 }
