@@ -14,10 +14,15 @@ class Page_model extends CI_Model
     {
         $cateid = (int)$cateid;
         $page = (int)$page;
+        $subClassList = true;
 
         if(!$cateid) show_error('访问出错，请返回重试',200,'出错了');
 
         $cateList = $this->db->query("select * from wesing_category where parentid=?",array($cateid))->result_array();
+        if(!$cateList){
+            $subClassList = false;
+            $cateList = $this->db->query("select * from wesing_category where cate_id=?",array($cateid))->result_array();
+        }
 
         foreach ($cateList as $_key=>$_cateItem){
             if($_cateItem['singlepage']){
@@ -25,11 +30,13 @@ class Page_model extends CI_Model
                 $cateList[$_key]['page']=current($singlePageContent);
             }else{
                 $artList = $this->db->query('select art_id,art_title,art_ctime from wesing_article where cate_id=? and disabled=0 order by art_id desc limit ?,?',array($_cateItem['cate_id'],($page-1)*5,5) )->result_array();
+                $artCounter = $this->db->query('select count(1) as total from wesing_article where cate_id=? and disabled=0 ',array($_cateItem['cate_id']) )->result_array();
                 $cateList[$_key]['art'] = $artList;
+                $cateList[$_key]['totalPage'] = ceil($artCounter[0]['total']/5);
             }
         }
 
-        return array('catelist'=>$cateList);
+        return array('catelist'=>$cateList,'subCates'=>$subClassList);
     }
 
     public function getSliderList()

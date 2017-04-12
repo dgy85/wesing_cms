@@ -47,7 +47,7 @@
 
 <!--我的足迹按钮-->
 <div class="index_bottom">
-    <a href="list_wdzj.html"><img src="/assets/images/wdzj.png" width="100%" /></a>
+    <a href="<?php echo site_url('home/usr_center')?>"><img src="/assets/images/wdzj.png" width="100%" /></a>
     <p>无论身在何方，您都有机会与学院一起成长</p>
     <p class="yw">Wherever you are,<br />FDSM Alumni always have the chance to grow with the school</p>
 </div>
