@@ -11,6 +11,8 @@ class Home extends WeSing_Controller {
 
     public function index()
 	{
+//        $mat= preg_split('/^[\d{21}]$/','001060102030405060107002060102030405070108',-1,PREG_SPLIT_NO_EMPTY);
+//	    var_dump($mat);
 	    $cate = (array)$this->page_model->getCategoryList();
 	    $slider = (array)$this->page_model->getSliderList();
         $args = array_merge(array(),$cate,$slider);
@@ -52,6 +54,7 @@ class Home extends WeSing_Controller {
 
     public function usr_center()
     {
-        $this->load->view('wesing/usrcenter');
+        $args = $this->page_model->getMyActs();
+        $this->load->view('wesing/usrcenter',$args);
     }
 }
