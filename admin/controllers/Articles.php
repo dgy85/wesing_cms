@@ -50,9 +50,12 @@ class Articles extends Admin_Controller
     public function add_art()
     {
         $artTitle = $this->input->post('art_title',true);
-        $artDesc = $this->input->post('art_desc',true);
+        $artDesc = $this->input->post('art_description',true);
         $category = $this->input->post('category',true);
         $artContent = $this->input->post('art_content',true);
+        $artTitle = strip_tags($artTitle);
+        $artDesc  = strip_tags($artDesc);
+        $category = (int)$category;
 
         if(mb_strlen($artTitle)>100){
             $this->_response('文章标题不能超过100个字符',400);
@@ -77,7 +80,10 @@ class Articles extends Admin_Controller
         $documentid = $this->input->post('documentid',true);
         $artTitle = $this->input->post('art_title',true);
         $artDesc = $this->input->post('art_description',true);
+        $category = $this->input->post('category',true);
         $artContent = $this->input->post('art_content',true);
+        $artTitle = strip_tags($artTitle);
+        $artDesc  = strip_tags($artDesc);
 
         if(mb_strlen($artTitle)>100){
             $this->_response('文章标题不能超过100个字符',400);
@@ -89,6 +95,7 @@ class Articles extends Admin_Controller
 
         $this->articles_model->setMeta('art_title',$artTitle);
         $this->articles_model->setMeta('art_desc',$artDesc);
+        $this->articles_model->setMeta('cate_id',$category);
         $this->articles_model->setMeta('art_content',$artContent);
         $respMsg = $this->articles_model->updateRec($documentid);
 
