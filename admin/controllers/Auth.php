@@ -7,6 +7,12 @@ class Auth extends CI_Controller
         $this->load->view('admin/login');
     }
 
+    public function logout()
+    {
+        $this->session->sess_destroy();
+        header("Location: ".site_url('Auth/login'));
+    }
+
     public function checkPass()
     {
         $uname = $this->input->get('uname');

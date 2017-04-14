@@ -42,30 +42,30 @@
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                         <span class="user-info">
                             <small>欢迎光临,</small>
-                            Jason
+                            <?php echo $this->session->userdata('uname')?>
                         </span>
                         <i class="icon-caret-down"></i>
                     </a>
 
                     <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-                        <li>
-                            <a _href="<?php echo site_url('usr-setting') ?>">
-                                <i class="icon-cog"></i>
-                                设置
-                            </a>
-                        </li>
+<!--                        <li>-->
+<!--                            <a _href="--><?php //echo site_url('usr-setting') ?><!--">-->
+<!--                                <i class="icon-cog"></i>-->
+<!--                                设置-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!---->
+<!--                        <li>-->
+<!--                            <a href="--><?php //echo site_url('usr/profile') ?><!--">-->
+<!--                                <i class="icon-user"></i>-->
+<!--                                个人资料-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!---->
+<!--                        <li class="divider"></li>-->
 
                         <li>
-                            <a href="<?php echo site_url('usr/profile') ?>">
-                                <i class="icon-user"></i>
-                                个人资料
-                            </a>
-                        </li>
-
-                        <li class="divider"></li>
-
-                        <li>
-                            <a href="javascript:void(0)" id="logoutBtn">
+                            <a href="<?php echo site_url('Auth/logout')?>">
                                 <i class="icon-off"></i>
                                 退出
                             </a>
