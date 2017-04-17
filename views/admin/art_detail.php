@@ -7,7 +7,6 @@
             <?php echo $list['art_title']?>
         </span>
     </div><!-- /.page-header -->
-    <hr/>
     <div class="row">
         <div class="col-sm-6">
             <p>

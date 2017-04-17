@@ -39,9 +39,9 @@ class Articles_model extends Admin_Model
     {
         $artId = (int)$art_id;
         $whereStr = $this->whereCondition ? ' and '.implode(' and ',$this->whereCondition) : '';
-        $adminList = $this->db->query(sprintf("select art_id,art_title,art_desc,art_content from %s where art_id=%d and disabled=0 " ,$this->tableName,$whereStr,$artId ))->result_array();
+        $adminList = $this->db->query(sprintf("select art_id,art_title,art_desc,art_content from %s where disabled=0 %s and art_id=%d" ,$this->tableName,$whereStr,$artId ))->result_array();
         return array(
-            'list'=>$adminList
+            'list'=>current($adminList)
         );
     }
     public function updateRec($documentid)
