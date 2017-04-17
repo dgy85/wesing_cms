@@ -24,8 +24,8 @@
                                 </th>
                                 <th>标题</th>
                                 <th>类型</th>
-                                <th>展示图</th>
-                                <th>链接地址</th>
+                                <th class=" hidden-xs">展示图</th>
+                                <th class=" hidden-xs">链接地址</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -43,8 +43,8 @@
                                         <?php echo $_slider['s_title']?>
                                     </td>
                                     <td><?php echo isset($typeMap[$_slider['s_type']])?$typeMap[$_slider['s_type']] : "未知类型"?></td>
-                                    <td><?php printf('<a href="%s" target="_blank">%s</a>',$_slider['s_thub'],$_slider['s_thub'])?></td>
-                                    <td><?php echo $_slider['s_target']?></td>
+                                    <td class=" hidden-xs"><?php printf('<a href="%s" target="_blank">%s</a>',$_slider['s_thub'],$_slider['s_thub'])?></td>
+                                    <td class=" hidden-xs"><?php echo $_slider['s_target']?></td>
                                     <td>
                                         <?php echo actLink($_slider['s_id'],array('base'=>'slider'))?>
                                     </td>
