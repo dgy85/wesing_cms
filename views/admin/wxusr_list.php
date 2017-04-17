@@ -27,7 +27,7 @@
                                 <th>用户key</th>
                                 <th>登录类型</th>
                                 <th>注册时间</th>
-                                <th></th>
+                                <th>操作</th>
                             </tr>
                             </thead>
 
