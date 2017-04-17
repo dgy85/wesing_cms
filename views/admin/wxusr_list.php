@@ -22,76 +22,37 @@
                                         <span class="lbl"></span>
                                     </label>
                                 </th>
-                                <th>Domain</th>
-                                <th>Price</th>
-                                <th class="hidden-480">Clicks</th>
-
-                                <th>
-                                    <i class="icon-time bigger-110 hidden-480"></i>
-                                    Update
-                                </th>
-                                <th class="hidden-480">Status</th>
-
+                                <th>用户昵称</th>
+                                <th>用户头像</th>
+                                <th>用户key</th>
+                                <th>登录类型</th>
+                                <th>注册时间</th>
                                 <th></th>
                             </tr>
                             </thead>
 
                             <tbody>
-                            <tr>
-                                <td class="center">
-                                    <label>
-                                        <input type="checkbox" class="ace"/>
-                                        <span class="lbl"></span>
-                                    </label>
-                                </td>
-                                <td>
-                                    <a href="#">ace.com</a>
-                                </td>
-                                <td>$45</td>
-                                <td class="hidden-480">3,330</td>
-                                <td>Feb 12</td>
-                                <td class="hidden-480">
-                                    <span class="label label-sm label-warning">Expiring</span>
-                                </td>
-                                <td>
-                                    <?php echo actLink(45,array('test'=>'link','tar'=>'base'))?>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="center">
-                                    <label>
-                                        <input type="checkbox" class="ace"/>
-                                        <span class="lbl"></span>
-                                    </label>
-                                </td>
-
-                                <td>
-                                    <a href="#">base.com</a>
-                                </td>
-                                <td>$35</td>
-                                <td class="hidden-480">2,595</td>
-                                <td>Feb 18</td>
-
-                                <td class="hidden-480">
-                                    <span class="label label-sm label-success">Registered</span>
-                                </td>
-
-                                <td>
-                                    <?php echo actLink(33)?>
-                                </td>
-                            </tr>
+                            <?php if(is_array($list)) foreach ($list as $_usr):?>
+                                <tr>
+                                    <td class="center">
+                                        <label>
+                                            <input type="checkbox" class="ace" _itemId="<?php echo $_usr['usr_id']?>"/>
+                                            <span class="lbl"></span>
+                                        </label>
+                                    </td>
+                                    <td><?php echo $_usr['nick_name']?></td>
+                                    <td><a href="<?php echo $_usr['usr_thub']?>"><?php echo $_usr['usr_thub']?></a> </td>
+                                    <td><?php echo $_usr['open_key']?></td>
+                                    <td><?php echo $_usr['key_type']?></td>
+                                    <td><?php echo $_usr['regtime']?></td>
+                                    <td>
+                                        <?php echo actLink($_usr['usr_id'],array('base'=>'administrator'))?>
+                                    </td>
+                                </tr>
+                            <?php endforeach;?>
                             </tbody>
                         </table>
-                        <table class="table table-striped table-bordered table-hover">
-                            <thead>
-                            <tr>
-                                <th class="left" style="font-weight: normal;border-bottom: none">
-                                    条数记录
-                                </th>
-                            </tr>
-                            </thead>
-                        </table>
+                        <?php pagenation('usr/index',$page,$totalpage)?>
                     </div><!-- /.table-responsive -->
                 </div><!-- /span -->
             </div><!-- /row -->

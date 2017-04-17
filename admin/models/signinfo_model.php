@@ -3,11 +3,10 @@
 class Signinfo_model extends Admin_Model
 {
 
-    public function delete($documentid)
+    public function delete($art_id,$usr_id)
     {
 
-        $this->db->query('update wesing_category set disabled=1 WHERE cate_id=?',array($documentid));
-        $this->db->query('update wesing_article set disabled=1 where cate_id=?',array($documentid));
+        $this->db->query('update wesing_signinfo set disabled=1 where art_id=? and usr_id=?',array($art_id,$usr_id));
         return '';
     }
 
