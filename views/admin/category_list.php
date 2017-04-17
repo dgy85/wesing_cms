@@ -26,7 +26,7 @@
                                 <th class="hidden-sm hidden-xs">列表图片</th>
                                 <th class="hidden-sm hidden-xs">分类大图</th>
                                 <th class="hidden-sm hidden-xs">排序</th>
-                                <th class="hidden-sm hidden-xs">操作</th>
+                                <th class="hidden-sm">操作</th>
                             </tr>
                             </thead>
 
