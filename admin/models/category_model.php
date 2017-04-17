@@ -30,7 +30,16 @@ class Category_model extends Admin_Model
         $whereStr = $this->whereCondition ? ' and '.implode(' and ',$this->whereCondition) : '';
         $totalArr = $this->db->query(sprintf("select count(1) as total from %s where disabled=0 %s",$this->tableName,$whereStr))->result_array();
         $total = current($totalArr);
-        $adminList = $this->db->query(sprintf("select * from %s where disabled=0 %s ORDER  by cate_sort,cate_id limit %d,%d" ,$this->tableName,$whereStr,($page-1)*$pagesize,$pagesize ))->result_array();
+        $adminListArr = $this->db->query(sprintf("select * from %s where disabled=0 %s ORDER  by parentid,cate_sort,cate_id limit %d,%d" ,$this->tableName,$whereStr,($page-1)*$pagesize,$pagesize ))->result_array();
+        $adminList = array();
+        foreach ($adminListArr as $_key=>$_cateItem){
+            if($_cateItem['parentid']==0){
+                $adminList[$_cateItem['cate_id']] = $_cateItem;
+            }elseif($_cateItem['parentid']!=0){
+                $_cateItem['cate_name'] = str_repeat('&nbsp;',4).'+'.$_cateItem['cate_name'];
+                $adminList[$_cateItem['parentid']]['children'][$_cateItem['cate_id']] = $_cateItem;
+            }
+        }
         return array(
             'list'=>$adminList,
             'totalpage' =>ceil($total['total']/$pagesize),
