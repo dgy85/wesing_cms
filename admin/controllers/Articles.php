@@ -15,6 +15,12 @@ class Articles extends Admin_Controller
         $this->showpage('admin/art_list',$args);
     }
 
+    public function detail($art_id)
+    {
+        $art_id = (int)$art_id;
+        $args = $this->articles_model->getDetail($art_id);
+        $this->showpage('admin/art_detail',$args);
+    }
     public function add()
     {
         $this->load->model('category_model');

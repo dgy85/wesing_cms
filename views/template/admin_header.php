@@ -12,8 +12,11 @@
     <link rel="stylesheet" href="/assets/lib/css/ace.min.css" />
     <link rel="stylesheet" href="/assets/styles/local.css" />
     <link rel="stylesheet" href="/assets/lib/js/layer/skin/default/layer.css" />
+    <link rel="stylesheet" href="/assets/lib/js/layer/mobile/need/layer.css" />
+    <script src="/assets/lib/js/layer/mobile/layer.js"></script>
     <script src="/assets/seajs.js"></script>
     <script src="/assets/seajsConfig.js"></script>
+
     <script>
         var PAGE_VAR = {
             SITE_URL:'<?php echo site_url('/')?>',

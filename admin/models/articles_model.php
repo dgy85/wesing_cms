@@ -35,6 +35,15 @@ class Articles_model extends Admin_Model
         );
     }
 
+    public function getDetail($art_id)
+    {
+        $artId = (int)$art_id;
+        $whereStr = $this->whereCondition ? ' and '.implode(' and ',$this->whereCondition) : '';
+        $adminList = $this->db->query(sprintf("select art_id,art_title,art_desc,art_content from %s where art_id=%d and disabled=0 " ,$this->tableName,$whereStr,$artId ))->result_array();
+        return array(
+            'list'=>$adminList
+        );
+    }
     public function updateRec($documentid)
     {
         unset(self::$dbCache[$this->tableName]->cate_id);
