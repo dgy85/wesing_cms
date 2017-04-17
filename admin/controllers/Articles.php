@@ -19,6 +19,7 @@ class Articles extends Admin_Controller
     {
         $art_id = (int)$art_id;
         $args = $this->articles_model->getDetail($art_id);
+        if(!$args) show_error("文档#".$art_id."未找到",404,'出错了');
         $this->showpage('admin/art_detail',$args);
     }
     public function add()
