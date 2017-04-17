@@ -26,4 +26,7 @@
             return this.replace(/\s/g,'');
         };
     </script>
+    <style>
+        html,body{overflow-y: auto}
+    </style>
 </head>

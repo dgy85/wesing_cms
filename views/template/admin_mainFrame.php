@@ -1,4 +1,29 @@
-<?php tpl('admin_header') ?>
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="utf-8" />
+    <title>后台管理系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base target="_self">
+    <link href="/assets/lib/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/lib/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/assets/lib/css/ace.min.css" />
+    <link rel="stylesheet" href="/assets/styles/local.css" />
+    <link rel="stylesheet" href="/assets/lib/js/layer/skin/default/layer.css" />
+    <script src="/assets/seajs.js"></script>
+    <script src="/assets/seajsConfig.js"></script>
+    <script>
+        var PAGE_VAR = {
+            SITE_URL:'<?php echo site_url('/')?>',
+            BASE_URL:'<?php echo base_url('/')?>',
+        }
+        String.prototype.trimSpace = function(){
+            return this.replace(/\s/g,'');
+        };
+    </script>
+</head>
 <body>
 <div class="navbar navbar-default" id="navbar">
     <div class="navbar-container" id="navbar-container">
@@ -17,30 +42,30 @@
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                         <span class="user-info">
                             <small>欢迎光临,</small>
-                            Jason
+                            <?php echo $this->session->userdata('uname')?>
                         </span>
                         <i class="icon-caret-down"></i>
                     </a>
 
                     <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-                        <li>
-                            <a _href="<?php echo site_url('usr-setting') ?>">
-                                <i class="icon-cog"></i>
-                                设置
-                            </a>
-                        </li>
+<!--                        <li>-->
+<!--                            <a _href="--><?php //echo site_url('usr-setting') ?><!--">-->
+<!--                                <i class="icon-cog"></i>-->
+<!--                                设置-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!---->
+<!--                        <li>-->
+<!--                            <a href="--><?php //echo site_url('usr/profile') ?><!--">-->
+<!--                                <i class="icon-user"></i>-->
+<!--                                个人资料-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!---->
+<!--                        <li class="divider"></li>-->
 
                         <li>
-                            <a href="<?php echo site_url('usr/profile') ?>">
-                                <i class="icon-user"></i>
-                                个人资料
-                            </a>
-                        </li>
-
-                        <li class="divider"></li>
-
-                        <li>
-                            <a href="javascript:void(0)" id="logoutBtn">
+                            <a href="<?php echo site_url('Auth/logout')?>">
                                 <i class="icon-off"></i>
                                 退出
                             </a>
@@ -126,7 +151,7 @@
 
 <style>
     body {
-        overflow: hidden;
+        /*overflow: hidden;*/
     }
 
     iframe::after {

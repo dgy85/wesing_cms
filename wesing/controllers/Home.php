@@ -52,6 +52,7 @@ class Home extends WeSing_Controller {
 
     public function usr_center()
     {
-        $this->load->view('wesing/usrcenter');
+        $args = $this->page_model->getMyActs();
+        $this->load->view('wesing/usrcenter',$args);
     }
 }
