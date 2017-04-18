@@ -51,10 +51,31 @@
                                             <?php echo actLink($_cateitem['cate_id'],array('base'=>'category'))?>
                                         </td>
                                     </tr>
+                                    <?php if (isset($_cateitem['children'])):foreach ($_cateitem['children'] as $_subCate):?>
+                                        <tr>
+                                            <td class="center">
+                                                <label>
+                                                    <input type="checkbox" class="ace" _itemId="<?php echo $_subCate['cate_id']?>"/>
+                                                    <span class="lbl"></span>
+                                                </label>
+                                            </td>
+                                            <td><?php echo $_subCate['cate_name']?></td>
+                                            <td class="hidden-sm hidden-xs">
+                                                <?php printf('<a href="%s" target="_blank">%s</a>',$_subCate['cate_thub'],$_subCate['cate_thub'])?>
+                                            </td>
+                                            <td class="hidden-sm hidden-xs">
+                                                <?php printf('<a href="%s" target="_blank">%s</a>',$_subCate['cate_metaimage'],$_subCate['cate_metaimage'])?>
+                                            </td>
+                                            <td class="hidden-sm hidden-xs"><?php echo $_subCate['cate_sort']?></td>
+                                            <td>
+                                                <?php echo actLink($_subCate['cate_id'],array('base'=>'category'))?>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach;endif;;?>
                                 <?php endforeach;?>
                             </tbody>
                         </table>
-                        <?php pagenation('category/index',$page,$totalpage)?>
+<!--                        --><?php //pagenation('category/index',$page,$totalpage)?>
                     </div><!-- /.table-responsive -->
                 </div><!-- /span -->
             </div><!-- /row -->

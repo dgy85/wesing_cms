@@ -56,7 +56,7 @@ class Page_model extends CI_Model
 
     public function getMyActs()
     {
-        $actlist['signlist'] = $this->db->query("select a.*,art_title from wesing_signinfo a,wesing_article b where disabled=0 and a.art_id = b.art_id")->result_array();
+        $actlist['signlist'] = $this->db->query("select a.*,art_title from wesing_signinfo a,wesing_article b where a.disabled=0 and b.disabled=0 and a.art_id = b.art_id")->result_array();
 
         return (array)$actlist;
     }
