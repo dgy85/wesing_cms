@@ -75,7 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-
+	'hostname' => 'rm-bp1y6wx37c99js52r.mysql.rds.aliyuncs.com',
+	'username' => 'r60340e017',
+	'password' => 'Dgy850219',
+	'database' => 'r60340e017',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
