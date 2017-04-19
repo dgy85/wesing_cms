@@ -3,7 +3,7 @@
 <div class="page-content">
     <div class="page-header">
         <span class="bigger-150">
-            新增内容 / <?php echo anchor('articles','返回')?>
+            编辑内容 / <?php echo anchor('articles','返回')?>
         </span>
     </div><!-- /.page-header -->
 
