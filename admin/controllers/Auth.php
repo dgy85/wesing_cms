@@ -23,18 +23,18 @@ class Auth extends CI_Controller
         $uname = $this->input->get('uname');
         $upass = $this->input->get('upass');
         if(!$uname || !$upass){
-            $this->_response(array('responseCode'=>403,'responseMsg'=>'账号或者密码不能为空'),403);
+            $this->_response(array('responseCode'=>403,'responseMsg'=>'账号或者密码不能为空'),200);
         }
 
         $this->load->model('administrator_model','am');
         $adminInfo = $this->am->getByField('uname',$uname);
         if(!$adminInfo)
-            $this->_response(array('responseCode'=>401,'responseMsg'=>'账号或者密码错误'),403);
+            $this->_response(array('responseCode'=>401,'responseMsg'=>'账号或者密码错误'),200);
 
         $adminPass = $adminInfo['upass'];
         $salt = $adminInfo['salt'];
         if(md5($uname.$upass.$salt)!=$adminPass)
-            $this->_response(array('responseCode'=>402,'responseMsg'=>'账号或者密码错误'),403);
+            $this->_response(array('responseCode'=>402,'responseMsg'=>'账号或者密码错误'),200);
 
         unset($adminInfo['salt']);
         unset($adminInfo['upass']);

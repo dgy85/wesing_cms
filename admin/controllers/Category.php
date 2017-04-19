@@ -7,10 +7,9 @@ class Category extends Admin_Controller
         $this->load->model('category_model');
     }
 
-    public function index($page=1)
+    public function index()
     {
-        $page = (int)$page<0 ? 1 : (int)$page;
-        $args = $this->category_model->getlist($page,10);
+        $args = $this->category_model->getlist(1,1000);
         $this->showpage('admin/category_list',$args);
     }
 

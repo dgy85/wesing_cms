@@ -49,7 +49,7 @@ class Articles extends Admin_Controller
         if(isset($adminRs[0]) && !$adminRs[0]) show_error('文档#'.$documentId.'不存在'.anchor('articles','返回').'',200,'出错了');
 
         $this->category_model->singlepage=0;
-        $args = $this->category_model->getList(1,100);
+        $args = $this->category_model->getList(1,1000);
         $adminRs = array_merge($adminRs,$args);
         $this->showpage('admin/art_edit',$adminRs);
     }
@@ -60,6 +60,8 @@ class Articles extends Admin_Controller
         $artDesc = $this->input->post('art_description',true);
         $category = $this->input->post('category',true);
         $artContent = $this->input->post('art_content',true);
+        $ifactivity = $this->input->post('ifactivity',true);
+
         $artTitle = strip_tags($artTitle);
         $artDesc  = strip_tags($artDesc);
         $category = (int)$category;
@@ -72,6 +74,7 @@ class Articles extends Admin_Controller
         $this->articles_model->setMeta('cate_id',$category);
         $this->articles_model->setMeta('art_desc',$artDesc);
         $this->articles_model->setMeta('art_content',$artContent);
+        $this->articles_model->setMeta('if_activity',$ifactivity=='on');
         $this->articles_model->setMeta('art_ctime',date('Y-m-d H:i:s'));
         $this->articles_model->setMeta('authorid',$this->session->userdata('id'));
         $respMsg = $this->articles_model->addNew();
@@ -89,6 +92,7 @@ class Articles extends Admin_Controller
         $artDesc = $this->input->post('art_description',true);
         $category = $this->input->post('category',true);
         $artContent = $this->input->post('art_content',true);
+        $ifactivity = $this->input->post('ifactivity',true);
         $artTitle = strip_tags($artTitle);
         $artDesc  = strip_tags($artDesc);
 
@@ -104,6 +108,7 @@ class Articles extends Admin_Controller
         $this->articles_model->setMeta('art_desc',$artDesc);
         $this->articles_model->setMeta('cate_id',$category);
         $this->articles_model->setMeta('art_content',$artContent);
+        $this->articles_model->setMeta('if_activity',$ifactivity=='on');
         $respMsg = $this->articles_model->updateRec($documentid);
 
         if($respMsg){
