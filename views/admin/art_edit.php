@@ -22,7 +22,11 @@
                                     <option value="">---请选择分类---</option>
                                     <?php
                                     if($list) foreach ($list as $_cateItem):
-                                        printf('<option value="%d" %s>%s</option>',$_cateItem['cate_id'],$_cateItem['cate_id'] == $cate_id ? "selected" : '',$_cateItem['cate_name']);
+                                        printf('<option value="%d" %s %s>%s</option>',$_cateItem['cate_id'],isset($_cateItem['children']) ? "disabled" : "",$_cateItem['cate_id'] == $cate_id ? "selected" : '',$_cateItem['cate_name']);
+                                        if($_cateItem['children']) foreach ($_cateItem['children'] as $_child){
+                                            printf('<option value="%d" %s>%s</option>',$_child['cate_id'],$_child['cate_id'] == $cate_id ? "selected" : '',$_child['cate_name']);
+                                        }
+
                                     endforeach;
                                     ?>
                                 </select>
@@ -53,6 +57,17 @@
                                 <span class="help-inline col-xs-12 col-sm-7 text-danger">
                                     <span class="middle"></span>
                                 </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group switch-content">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 是否活动</label>
+
+                            <div class="col-sm-1" style="padding-top: 7px">
+                                <input type="checkbox" id="ifactivity" name="ifactivity" class="col-xs-10 col-sm-5" <?php echo isset($if_activity) && $if_activity ? 'checked' : ''?>>
+                                <span class="help-inline col-xs-12 col-sm-7 text-danger">
+												<span class="middle"></span>
+											</span>
                             </div>
                         </div>
 

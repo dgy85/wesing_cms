@@ -88,13 +88,13 @@ display:none;
 .list2 ul li a{font-size:1em;color:#7d0000;}
 
 .list3{width:100%;padding-left:0;}
-.list3 li{display:block;border-bottom:1px solid #c6c6c6;list-style:none; background:url(../img/arr1.png) right center no-repeat;background-size:auto 20%}
+.list3 li{display:block;border-bottom:1px solid #c6c6c6;list-style:none; background:url(../images/arr1.png) right center no-repeat;background-size:auto 20%}
 .list3 li a{line-height:3em;font-size:1em;display:block; overflow:hidden;color:#a0a0a0;}
 .list3 li a span{font-size:0.8em;padding-right:0.8em;color:#7d0000;}
 
 .list4{width:100%;}
 .list4 ul li{display:block;width:90%;height:3em;margin:0 5%;border-bottom:1px solid #c6c6c6;list-style:none;overflow:hidden;}
-.list4 ul li a{line-height:3em;height:3em;font-size:1em;display:block; overflow:hidden;width:90%;padding-right:10%;background:url(../img/arr1.png) right center no-repeat;background-size:auto 20%;}
+.list4 ul li a{line-height:3em;height:3em;font-size:1em;display:block; overflow:hidden;width:90%;padding-right:10%;background:url(../images/arr1.png) right center no-repeat;background-size:auto 20%;}
 .list4 ul li a span{font-size:0.8em;color:#7d0000;margin-right:0.8em;}
 
 /* 详情 */

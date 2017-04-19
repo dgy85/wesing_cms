@@ -7,10 +7,9 @@ class Category extends Admin_Controller
         $this->load->model('category_model');
     }
 
-    public function index($page=1)
+    public function index()
     {
-        $page = (int)$page<0 ? 1 : (int)$page;
-        $args = $this->category_model->getlist($page,10);
+        $args = $this->category_model->getlist(1,1000);
         $this->showpage('admin/category_list',$args);
     }
 
@@ -55,6 +54,7 @@ class Category extends Admin_Controller
         $ifpage = $this->input->post('ifpage',true);
         $ifactivity = $this->input->post('ifactivity',true);
         $pageContent= $this->input->post('pagecontent');
+        $description= $this->input->post('description');
         $thub = $this->input->post('thub',true);
         $sort = (int)$this->input->post('sort',true);
 
@@ -73,7 +73,7 @@ class Category extends Admin_Controller
             $this->load->model('articles_model');
             $this->articles_model->setMeta('art_title',$categoryname);
             $this->articles_model->setMeta('cate_id',$this->category_model->getMeta('cate_id'));
-            $this->articles_model->setMeta('art_desc',mb_substr(strip_tags($pageContent),0,200));
+            $this->articles_model->setMeta('art_desc',mb_substr(strip_tags($description),0,200));
             $this->articles_model->setMeta('art_content',$pageContent);
             $this->articles_model->setMeta('if_activity',$ifactivity=='on');
             $this->articles_model->setMeta('art_ctime',date('Y-m-d H:i:s'));
@@ -94,6 +94,7 @@ class Category extends Admin_Controller
         $ifpage = $this->input->post('ifpage',true);
         $ifactivity = $this->input->post('ifactivity',true);
         $pageContent= $this->input->post('pagecontent',true);
+        $description= $this->input->post('description');
         $thub = $this->input->post('thub',true);
         $meta_image = $this->input->post('meta_image',true);
         $sort = (int)$this->input->post('sort',true);
@@ -130,7 +131,7 @@ class Category extends Admin_Controller
             $this->articles_model->setMeta('disabled',0);
             $this->articles_model->setMeta('art_title',$categoryname);
             $this->articles_model->setMeta('cate_id',$documentid);
-            $this->articles_model->setMeta('art_desc',mb_substr(strip_tags($pageContent),0,200));
+            $this->articles_model->setMeta('art_desc',mb_substr(strip_tags($description),0,200));
             $this->articles_model->setMeta('art_content',$pageContent);
             $this->articles_model->setMeta('if_activity',$ifactivity=='on');
             $this->articles_model->setMeta('art_ctime',date('Y-m-d H:i:s'));
