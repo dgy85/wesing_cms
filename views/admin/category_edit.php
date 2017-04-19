@@ -105,6 +105,17 @@
                         </div>
 
                         <div class="form-group switch-content <?php echo $ifHidden?>">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 内容概要</label>
+
+                            <div class="col-sm-9">
+                                <textarea id="description" name="description" placeholder="内容概要" class="col-xs-10 col-sm-5"><?php echo isset($art_desc)?$art_desc : ""?></textarea>
+                                <span class="help-inline col-xs-12 col-sm-7 text-danger">
+                                    <span class="middle"></span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group switch-content <?php echo $ifHidden?>">
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 页面内容</label>
 
                             <div class="col-sm-1" style="padding-top: 7px">

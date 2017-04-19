@@ -19,7 +19,7 @@
                             <?php if ($_cateItem['singlepage'] && $_cateItem['page']): ?>
                                 <li>
                                     <img src="/assets/images/arr2.png" class="t2"/>
-                                    <p style="color:#a0a0a0;font-size:1em;text-indent:3em;"><?php echo $_cateItem['page']['art_desc'] ?></p>
+                                    <p style="color:#a0a0a0;font-size:1em;text-indent:3em;"><?php echo str_ireplace("\r\n","<br/><p style=\"color:#a0a0a0;font-size:1em;text-indent:3em;\">",$_cateItem['page']['art_desc']) ?></p>
                                     <p style="text-align:right"><a
                                                 href="<?php echo site_url('home/art/') . $_cateItem['page']['art_id'] ?>"
                                                 style="color:#000;font-size:1em;">详情&gt;&gt;</a></p>
