@@ -27,7 +27,7 @@ class Articles_model extends Admin_Model
         $whereStr = $this->whereCondition ? ' and '.implode(' and ',$this->whereCondition) : '';
         $totalArr = $this->db->query(sprintf("select count(1) as total from %s where disabled=0 %s",$this->tableName,$whereStr))->result_array();
         $total = current($totalArr);
-        $adminList = $this->db->query(sprintf("select a.*,b.cate_name,c.uname from %s a,wesing_category b,wesing_admin c where a.cate_id = b.cate_id and a.authorid=c.id and a.disabled=0 and b.disabled=0 %s ORDER  by art_id desc limit %d,%d" ,$this->tableName,$whereStr,($page-1)*$pagesize,$pagesize ))->result_array();
+        $adminList = $this->db->query(sprintf("select a.*,b.cate_name,c.uname from %s a,wesing_category b,wesing_admin c where a.cate_id = b.cate_id and a.authorid=c.id and a.disabled=0 and b.disabled=0 and b.singlepage=0 %s ORDER  by art_id desc limit %d,%d" ,$this->tableName,$whereStr,($page-1)*$pagesize,$pagesize ))->result_array();
         return array(
             'list'=>$adminList,
             'totalpage' =>ceil($total['total']/$pagesize),
