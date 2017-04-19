@@ -75,7 +75,7 @@
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 内容</label>
 
                             <div class="col-sm-9">
-                                <textarea id="art_content" name="art_content" placeholder="内容概要" class="col-sm-10" style="height: 400px"><?php echo trimTitle($art_content)?></textarea>
+                                <textarea id="art_content" name="art_content" placeholder="内容概要" class="col-sm-10" style="height: 400px"><?php echo $art_content?></textarea>
                                 <span class="help-inline col-xs-12 col-sm-7 text-danger">
                                     <span class="middle"></span>
                                 </span>
