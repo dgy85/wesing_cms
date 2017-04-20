@@ -26,7 +26,7 @@ class Page_model extends CI_Model
 
         foreach ($cateList as $_key=>$_cateItem){
             if($_cateItem['singlepage']){
-                $singlePageContent = $this->db->query("select art_id,art_desc,if_activity from wesing_article where cate_id=? and disabled=0",array($_cateItem['cate_id']))->result_array();
+                $singlePageContent = $this->db->query("select art_id,art_desc,art_content,if_activity from wesing_article where cate_id=? and disabled=0",array($_cateItem['cate_id']))->result_array();
                 $cateList[$_key]['page']=current($singlePageContent);
             }else{
                 $artList = $this->db->query('select art_id,art_title,art_ctime from wesing_article where cate_id=? and disabled=0 order by art_id desc limit ?,?',array($_cateItem['cate_id'],($page-1)*5,5) )->result_array();

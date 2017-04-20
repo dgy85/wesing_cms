@@ -64,6 +64,9 @@ display:none;
 			 transition  : background .3s;
 			 overflow: hidden;
   list-style: none;
+	color:#a0a0a0;
+	font-size:1em;
+	/*text-indent:3em;*/
 }
 
 .dark_p{opacity:0.8;}
