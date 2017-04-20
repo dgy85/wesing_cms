@@ -1,6 +1,6 @@
 define(function (require) {
     var contentEditor;
-    var items = ['fullscreen', 'undo', 'redo', 'justifyleft', 'justifycenter', 'justifyright',
+    var items = ['source','fullscreen', 'undo', 'redo', 'justifyleft', 'justifycenter', 'justifyright',
         'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', '|', 'title', 'fontname', 'fontsize', '|', 'textcolor', 'bgcolor', 'bold',
         'italic', 'underline', 'strikethrough', 'removeformat', '|', 'image', 'media', 'advtable', 'link', 'unlink'];
 
