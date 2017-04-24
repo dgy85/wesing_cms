@@ -93,7 +93,7 @@ class Category extends Admin_Controller
         $parentid = (int)$this->input->post('parentid',true);
         $ifpage = $this->input->post('ifpage',true);
         $ifactivity = $this->input->post('ifactivity',true);
-        $pageContent= $this->input->post('pagecontent',true);
+        $pageContent= $this->input->post('pagecontent');
         $description= $this->input->post('description');
         $thub = $this->input->post('thub',true);
         $meta_image = $this->input->post('meta_image',true);

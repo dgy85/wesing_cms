@@ -59,7 +59,7 @@ class Articles extends Admin_Controller
         $artTitle = $this->input->post('art_title',true);
         $artDesc = $this->input->post('art_description',true);
         $category = $this->input->post('category',true);
-        $artContent = $this->input->post('art_content',true);
+        $artContent = $this->input->post('art_content');
         $ifactivity = $this->input->post('ifactivity',true);
 
         $artTitle = strip_tags($artTitle);
@@ -91,7 +91,7 @@ class Articles extends Admin_Controller
         $artTitle = $this->input->post('art_title',true);
         $artDesc = $this->input->post('art_description',true);
         $category = $this->input->post('category',true);
-        $artContent = $this->input->post('art_content',true);
+        $artContent = $this->input->post('art_content');
         $ifactivity = $this->input->post('ifactivity',true);
         $artTitle = strip_tags($artTitle);
         $artDesc  = strip_tags($artDesc);

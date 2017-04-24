@@ -16,11 +16,14 @@
 <!--        <li><a href="xq_xyxw.html"><span>2017-01-01</span>最有意义的投资，在复旦管院</a></li>-->
 <!--        <li><a href="xq_xyxw.html"><span>2017-01-01</span>“准”校友导师聊想法：夏春校友采访</a></li>-->
         <?php
-            foreach ($cateInfo['art'] as $_artItem){
+            if($cateInfo && isset($cateInfo['art']) && is_array($cateInfo['art'])) foreach ($cateInfo['art'] as $_artItem){
                 printf('<li><a href="%s"><span>%s</span>%s</a></li>',
                     site_url('home/art/'.$_artItem['art_id']),
                     date('Y-m-d',strtotime($_artItem['art_ctime'])),
                     $_artItem['art_title']);
+            }
+            else{
+                printf('<li><a href="#" onclick="javascript:history.go(-1)">当前无内容，返回上一页</a></li>');
             }
         ?>
     </ul>

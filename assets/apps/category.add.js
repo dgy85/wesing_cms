@@ -1,7 +1,7 @@
 define(function (require) {
     var contentEditor;
     var items = ['source','fullscreen', 'undo', 'redo', 'justifyleft', 'justifycenter', 'justifyright',
-        'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', '|', 'title', 'fontname', 'fontsize', '|', 'textcolor', 'bgcolor', 'bold',
+        'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent','forecolor', '|', 'title', 'fontname', 'fontsize', '|', 'textcolor', 'bgcolor', 'bold',
         'italic', 'underline', 'strikethrough', 'removeformat', '|', 'image', 'media', 'advtable', 'link', 'unlink'];
 
     require('lib/js/kindeditor/kindeditor-min.js');
