@@ -82,7 +82,7 @@ switch (ENVIRONMENT)
  *
  * NO TRAILING SLASH!
  */
-	$application_folder = 'wesing';
+	$application_folder = 'apis';
 
 /*
  *---------------------------------------------------------------

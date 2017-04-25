@@ -124,6 +124,13 @@ class CI_Log {
 
 		isset(self::$func_overload) OR self::$func_overload = (extension_loaded('mbstring') && ini_get('mbstring.func_overload'));
 
+        foreach (array_reverse(explode(DIRECTORY_SEPARATOR,APPPATH)) as $_pathItem){
+            if(!$_pathItem) continue;
+            $config["log_path"]=SHAREPATH.'logs'.DIRECTORY_SEPARATOR.$_pathItem.DIRECTORY_SEPARATOR;
+            break;
+        }
+        $config["log_threshold"]=ENVIRONMENT !== 'production'?4:2;
+
 		$this->_log_path = ($config['log_path'] !== '') ? $config['log_path'] : APPPATH.'logs/';
 		$this->_file_ext = (isset($config['log_file_extension']) && $config['log_file_extension'] !== '')
 			? ltrim($config['log_file_extension'], '.') : 'php';
@@ -251,7 +258,7 @@ class CI_Log {
 	 */
 	protected function _format_line($level, $date, $message)
 	{
-		return $level.' - '.$date.' --> '.$message."\n";
+		return sprintf("[%s][%s][%s] --> %s\n",$date,$level,$_SERVER['REQUEST_URI'],$message);
 	}
 
 	// --------------------------------------------------------------------

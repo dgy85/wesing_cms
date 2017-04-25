@@ -4,7 +4,7 @@ class Page_model extends CI_Model
 {
     public function getCategoryList()
     {
-        $cateList = $this->db->query("select * from wesing_category where parentid=0 ORDER  by cate_sort,cate_id limit 6" )->result_array();
+        $cateList = $this->db->query("select * from wesing_category where parentid=0 and disabled=0 ORDER  by cate_sort,cate_id" )->result_array();
         return array(
             'catelist'=>$cateList
         );
@@ -18,10 +18,10 @@ class Page_model extends CI_Model
 
         if(!$cateid) show_error('访问出错，请返回重试',200,'出错了');
 
-        $cateList = $this->db->query("select * from wesing_category where parentid=?",array($cateid))->result_array();
+        $cateList = $this->db->query("select * from wesing_category where parentid=? and disabled=0",array($cateid))->result_array();
         if(!$cateList){
             $subClassList = false;
-            $cateList = $this->db->query("select * from wesing_category where cate_id=?",array($cateid))->result_array();
+            $cateList = $this->db->query("select * from wesing_category where cate_id=? and disabled=0",array($cateid))->result_array();
         }
 
         foreach ($cateList as $_key=>$_cateItem){
