@@ -97,7 +97,7 @@ define(function(require){
         var title = $(this).text();
         var domId='dom_tab_'+target;
         if($('[_tabid='+domId+']').length) {
-            $('[_tabid='+domId+'] a').click();
+            $('[_tabid='+domId+']').is('.active') ? $('#'+domId+" iframe")[0].contentWindow.location.reload(): $('[_tabid='+domId+'] a').click();
             return;
         };
         if(tabCounter>=8){

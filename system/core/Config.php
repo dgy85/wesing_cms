@@ -182,7 +182,7 @@ class CI_Config {
 			return FALSE;
 		}
 
-		show_error('The configuration file '.$file.'.php does not exist.');
+		trigger_error('The configuration file '.$file.'.php does not exist.',E_USER_ERROR);
 	}
 
 	// --------------------------------------------------------------------
